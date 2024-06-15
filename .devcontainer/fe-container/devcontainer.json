@@ -1,0 +1,7 @@
+{
+	"name": "Frontend Web App Service",
+	"dockerComposeFile": ["../../docker-compose.yml"],
+	"service": "frontend-nextjs",
+	"shutdownAction": "none",
+	"workspaceFolder": "/workspace/fe-src"
+}
