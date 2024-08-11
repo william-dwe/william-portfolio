@@ -2,7 +2,7 @@ import React from "react";
 
 const HeroImageryLoading = () => {
     return (
-        <div>Loading model...</div>
+        <div className="w-full aspect-square col-span-6 justify-self-auto lg:mt-0"/>
     )
 }
 
