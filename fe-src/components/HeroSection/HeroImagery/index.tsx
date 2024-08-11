@@ -1,12 +1,12 @@
 "use client";
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { Canvas, useLoader, useFrame } from "@react-three/fiber";
 import { OrbitControls, Plane, Sky, Sphere } from "@react-three/drei";
 
 const RotatingModel = () => {
+  const [hovered, setHover] = useState(false)
   // TODO: rotate camera instead of object
-  // TODO: add stopper when editing camera angle
   const gltf = useLoader(GLTFLoader, '/images/avatar.glb')
   gltf.scene.traverse(function (child) {
     child.castShadow = true
@@ -14,12 +14,11 @@ const RotatingModel = () => {
   })
   const myMesh: React.MutableRefObject<any> = React.useRef();
 
-  useFrame(({ clock }) => {
-    const a = clock.getElapsedTime();
-    myMesh.current.rotation.y = a;
+  useFrame((state, delta) => {
+    if (!hovered) {
+      myMesh.current.rotation.y += delta;
+    }
   });
-
-
 
   return (
     <mesh ref={myMesh} castShadow receiveShadow>
@@ -28,6 +27,8 @@ const RotatingModel = () => {
         position={[0, -1, 0]}
         castShadow
         receiveShadow
+        onPointerOver={(event) => setHover(true)}
+        onPointerOut={(event) => setHover(false)}
       />
     </mesh>
   );
