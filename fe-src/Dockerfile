@@ -7,7 +7,7 @@ RUN apk add --no-cache libc6-compat
 ###########################
 
 # import devcontainer image
-FROM mcr.microsoft.com/devcontainers/typescript-node:1-20-bookworm AS local
+FROM mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye AS local
 RUN echo "[FE] Done init service in local"
 CMD sleep infinity
 
