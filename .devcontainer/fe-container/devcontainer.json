@@ -3,5 +3,12 @@
 	"dockerComposeFile": ["../../docker-compose.yml"],
 	"service": "frontend-nextjs",
 	"shutdownAction": "none",
-	"workspaceFolder": "/workspace/fe-src"
+	"workspaceFolder": "/workspace/fe-src",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"bradlc.vscode-tailwindcss"
+			]
+		}
+	}
 }
