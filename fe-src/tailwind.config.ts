@@ -53,8 +53,11 @@ const config: Config = {
     },
     colors: {
       ...colors,
-      primary: colors.orange,
-      secondary: colors.yellow,
+      p1: '#37191E',
+      p2: '#79453D',
+      p3: '#C7AB62',
+      p4: '#6A7E35',
+      p5: '#0C1713'
     }
   },
   plugins: [],

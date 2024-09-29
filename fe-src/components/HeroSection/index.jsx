@@ -1,18 +1,28 @@
 "use client";
 import React from "react";
 import HeroTitle from "./HeroTitle";
+import { useScroll, useTransform, motion } from 'framer-motion';
+import { useRef } from 'react';
 
 const HeroSection = () => {
+  const container = useRef();
+    const { scrollYProgress } = useScroll({
+      target: container,
+      offset: ['start start', 'end start']
+    })
+
+    const top = useTransform(scrollYProgress, [0, 1], ["0vh", "-300vh"])
+
   return (
-    <section className="
-      flex flex-col items-center justify-between 
-      min-h-screen p-12 lg:p-24 h-[90vh] lg:py-16
-      bg-gradient-radial from-gray-800 via-secondary-900 to-black
+    <section ref={container} className="
+      h-screen w-screen
+      overflow-hidden
+      bg-gradient-radial from-gray-800 via-p2 to-black
       animate-gradient-xy
     ">
-      {/* <div className="h-full"> */}
+      <div className="relative h-full w-full flex flex-col items-center justify-between">
         <HeroTitle/>
-      {/* </div> */}
+      </div>
     </section>
   );
 };

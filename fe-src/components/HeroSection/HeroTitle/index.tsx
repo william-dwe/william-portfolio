@@ -11,13 +11,14 @@ const HeroTitle = () => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
       className="
+        w-10/12 md:w-9/12 lg:w-7/12
         m-auto
-        w-9/12 sm:w-11/12 lg:w-7/12
-        text-left"
+        text-left
+      "
     >
       <span className="
         text-[#ADB7BE] 
-        text-base sm:text-lg lg:text-xl
+        text-base md:text-lg lg:text-xl
         mb-6 
       ">
         Let me tell you a story about
@@ -26,13 +27,13 @@ const HeroTitle = () => {
       <h1 className="
         mb-4
         text-white font-extrabold 
-        text-4xl sm:text-3xl lg:text-6xl 
+        text-3xl md:text-4xl lg:text-6xl 
         lg:leading-normal
       ">
         <span className="
           text-transparent 
-          text-7xl sm:text-5xl lg:text-9xl 
-          bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-600"
+          text-5xl md:text-7xl lg:text-9xl 
+          bg-clip-text bg-gradient-to-r from-p2 to-p3"
         >
           William Wibowo
         </span>
@@ -55,7 +56,7 @@ const HeroTitle = () => {
       <p className="
         mb-6
         text-[#ADB7BE] 
-        text-base sm:text-lg lg:text-xl
+        text-xs md:text-base lg:text-xl
       ">
       Full Stack Data & Platform Engineer, experienced in both developing and maintaining data platforms, covering end-to-end process of ETL-ELT pipelines. Look forward to collaborate with you!
       </p>

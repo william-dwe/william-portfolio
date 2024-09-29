@@ -1,16 +1,14 @@
 import HeroSection from "../components/HeroSection"
 import AboutSection from "../components/AboutSection"
-import TextParalaxDevider from "../components/TextParalaxDevider"
-import ZoomParalax from "../components/ZoomParalax"
+import IntroSection from "../components/IntroSection"
 
 export default function Home() {
   return (
     <main>
       <HeroSection/>
-      {/* <TextParalaxDevider/> */}
-      <ZoomParalax/>
+      <IntroSection/>
       <AboutSection/>
-      
+      <div className="h-screen"></div>
     </main>
   );
 }
