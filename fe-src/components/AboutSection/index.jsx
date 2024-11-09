@@ -1,8 +1,10 @@
 "use client";
 import dynamic from 'next/dynamic'
 import React, { useTransition, useState } from "react";
-import Image from "next/image";
-import TabButton from "./TabButton";
+import AboutText from "./AboutText";
+import EducationTimeline from "./AboutTimeline/EducationTimeline";
+import ExperienceTimeline from "./AboutTimeline/ExperienceTimeline";
+import IntroTitle from "./../IntroSection/IntroTitle"
 import HeroImageryLoading from "./HeroImagery/HeroImageryLoading";
 
 const TAB_DATA = [
@@ -60,49 +62,58 @@ const AboutSection = () => {
       setTab(id);
     });
   };
-  // TODO: change image on about section.
-  // TODO: alter design? split bio & skillset. 
-  // put something like: list of familiar & specialized tech stack. add logo for each tech stack.
-  // put downloadable CV button. 
+
+  let titleProps = {
+    headerContent:"This is",
+    headerContentUnderline:"my build",
+    subHeaderContent:"<William's character profile/>",
+    titleHeight:"15vh"
+}
 
   return (
-    // bg-gradient-to-r from-black to-p2
-    <section className="text-white h-screen 
-      bg-gray-800
-      " id="about">
-      <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
-        {/* <Image src="/images/about-image.png" width={500} height={500} />  */}
-        <LazyHeroImagery/>
-        <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-          <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
-          <p className="text-base lg:text-lg">
-            I am a Full Stack Data & Platform Engineer whose had several experiences in both developing & maintaining data platforms. I have experience in but not limited to creating Data Ingestion, Data Warehouse, Pipeline Orchestration, and Data Quality & Governance. I specialize in cloud data & platform migration, feel free to reach out for business inquiries.
-          </p>
-          <div className="flex flex-row justify-start mt-8">
-            <TabButton
-              selectTab={() => handleTabChange("skills")}
-              active={tab === "skills"}
-            >
-              {" "}
-              Skills{" "}
-            </TabButton>
-            <TabButton
-              selectTab={() => handleTabChange("education")}
-              active={tab === "education"}
-            >
-              {" "}
-              Education{" "}
-            </TabButton>
-            <TabButton
-              selectTab={() => handleTabChange("certifications")}
-              active={tab === "certifications"}
-            >
-              {" "}
-              Certifications{" "}
-            </TabButton>
+    <section className="
+      h-[300vh]
+      relative
+      text-white
+      bg-[#202023]
+      " id="about"
+    >
+      <div className="pointer-events-none z-50 relative lg:sticky lg:top-0">
+        <IntroTitle {...titleProps}/>
+        <div className="relative h-[85vh]">
+          <LazyHeroImagery/>
+        </div>
+      </div>
+
+      <div className="
+        h-[100vh]
+        relative
+      ">
+        {/* 
+        Option 1:
+          TODO: change these children to absolute left & right instead. 
+          why? to make sure the element on middle is clickable.
+          later on, we can disable the z-indexing for the 3d model.
+          it's okay if the 3 model doesn't show over the text.
+          as long as the button is clickable.
+        Option 2:
+          - move the button & interactable element to the right side.
+          - on mobile view:
+            - disable all grid spans. (no left-right side)
+            - keep the 3d model above so it didn't overlay
+            - enlarge the canvas size to 100% when not overlay.
+            (cons: need to re-render the page to resize canvas.)
+        */}
+        <div className="grid grid-cols-12 gap-y-2">
+          <div className="col-start-2 col-span-4">
+            <AboutText/>
           </div>
-          <div className="mt-8">
-            {TAB_DATA.find((t) => t.id === tab).content}
+          <div className="col-span-10"></div>
+          <div className="col-start-8 col-span-4">
+            <EducationTimeline/>
+          </div>
+          <div className="col-start-2 col-span-4">
+            <ExperienceTimeline/>
           </div>
         </div>
       </div>

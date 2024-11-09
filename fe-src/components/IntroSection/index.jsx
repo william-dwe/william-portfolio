@@ -73,14 +73,25 @@ const IntroSection = () => {
         }
     ]
 
+    let titleProps = {
+        headerContent:"Will's fondest",
+        headerContentUnderline:"memory fragments",
+        subHeaderContent:"Memories are bound to be made, some to be cherished, others to be shared."
+    }
+
     return (
         <>
-            
             <div ref={ref} className="
                 h-[250vh]
                 relative
             ">
-                <IntroTitle/>
+                <div className="
+                    sticky top-0 mb-[-30vh] 
+                ">
+                    <IntroTitle
+                    {...titleProps}
+                />
+                </div>
                 <div className="
                     h-[100vh]
                     mt-[30vh]
@@ -101,7 +112,7 @@ const IntroSection = () => {
                                 finalOpacity = 0
                             }
 
-                            const contentFadeTransformer = useTransform(scrollTrackingIntegrator, [fadeInStart, fadeInEnd, 1, 1+opacityLimit], [0, 0.8, zoomOpacity, finalOpacity])
+                            const contentFadeTransformer = useTransform(scrollTrackingIntegrator, [fadeInStart, fadeInEnd, 1, 1+opacityLimit], [0, zoomOpacity, zoomOpacity, finalOpacity])
 
                             let styleVar = {
                                 scale: scale,
@@ -125,7 +136,7 @@ const IntroSection = () => {
                                                 fill={true}
                                                 alt="image"
                                                 placeholder='blur'
-                                                className={"object-cover"}
+                                                className="object-cover"
                                             />
                                     </div>
                                 </motion.div>

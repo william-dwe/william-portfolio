@@ -12,7 +12,7 @@ const HeroTitle = () => {
       transition={{ duration: 0.5 }}
       className="
         w-10/12 md:w-9/12 lg:w-7/12
-        m-auto
+        my-auto
         text-left
       "
     >

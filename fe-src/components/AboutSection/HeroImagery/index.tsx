@@ -16,6 +16,8 @@ const RotatingModel = () => {
   useFrame((state, delta) => {
     if (!hovered) {
       myMesh.current.rotation.y += delta;
+    } else {
+      myMesh.current.rotation.y += delta/Math.PI;
     }
   });
 
@@ -26,8 +28,8 @@ const RotatingModel = () => {
         position={[0, -1, 0]}
         castShadow
         receiveShadow
-        onPointerOver={(event) => setHover(true)}
-        onPointerOut={(event) => setHover(false)}
+        onPointerOver={() => setHover(true)}
+        onPointerOut={() => setHover(false)}
       />
     </mesh>
   );
@@ -35,9 +37,12 @@ const RotatingModel = () => {
 
 const HeroImagery = () => {
   return (
-    <div className="w-full place-self-center lg:mt-0">
-      <div className="relative w-full aspect-square">
-        <Canvas className="size-full object-contain" shadows camera={{ position: [-0.5, 1, 1.9]}}>
+    <div className="
+      pointer-events-none absolute top-0 w-full h-full place-self-center lg:mt-0
+      flex justify-center items-center
+    ">
+      <div className="child relative w-7/12 h-full aspect-square">
+        <Canvas className="size-full object-contain" shadows camera={{ position: [0, 0, 1.3]}}>
           <Suspense fallback={null}>
             <OrbitControls enableZoom={false} />
             <ambientLight intensity={0.3} />

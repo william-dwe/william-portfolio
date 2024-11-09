@@ -5,17 +5,9 @@ import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef } from 'react';
 
 const HeroSection = () => {
-  const container = useRef();
-    const { scrollYProgress } = useScroll({
-      target: container,
-      offset: ['start start', 'end start']
-    })
-
-    const top = useTransform(scrollYProgress, [0, 1], ["0vh", "-300vh"])
-
   return (
-    <section ref={container} className="
-      h-screen w-screen
+    <section className="
+      h-screen
       overflow-hidden
       bg-gradient-radial from-gray-800 via-p2 to-black
       animate-gradient-xy
