@@ -4,7 +4,7 @@ import timepoint_content from '../AboutTimeline'
 
 const EducationTimeline = () => {
     return (
-        <div dir='rtl' className='rtl'>
+        <>
             <h2 className="text-4xl font-bold text-white mb-4">Education & Certification</h2>
             <ol className="relative border-s border-gray-200 dark:border-gray-700">                  
                 <li className="mb-10 ms-4">
@@ -39,7 +39,7 @@ const EducationTimeline = () => {
                     </a>
                 </li>
             </ol>
-        </div>
+        </>
     )
 }
 

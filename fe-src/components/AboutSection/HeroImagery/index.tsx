@@ -41,7 +41,7 @@ const HeroImagery = () => {
       pointer-events-none absolute top-0 w-full h-full place-self-center lg:mt-0
       flex justify-center items-center
     ">
-      <div className="child relative w-7/12 h-full aspect-square">
+      <div className="child relative w-full lg:w-7/12 h-full aspect-square">
         <Canvas className="size-full object-contain" shadows camera={{ position: [0, 0, 1.3]}}>
           <Suspense fallback={null}>
             <OrbitControls enableZoom={false} />

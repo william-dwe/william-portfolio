@@ -4,49 +4,10 @@ import React, { useTransition, useState } from "react";
 import AboutText from "./AboutText";
 import EducationTimeline from "./AboutTimeline/EducationTimeline";
 import ExperienceTimeline from "./AboutTimeline/ExperienceTimeline";
+import InternshipTimeline from "./AboutTimeline/InternshipTimeline";
+import VoluntaryTimeline from "./AboutTimeline/VoluntaryTimeline";
 import IntroTitle from "./../IntroSection/IntroTitle"
 import HeroImageryLoading from "./HeroImagery/HeroImageryLoading";
-
-const TAB_DATA = [
-  {
-    title: "Skills",
-    id: "skills",
-    content: (
-      <ul className="list-disc pl-2">
-        <li>Python</li>
-        <li>Golang</li>
-        <li>Bash/ Shell Script</li>
-        <li>Node.js</li>
-        <li>Datawarehousing Tools (BigQuery, Hive, Impala, etc.)</li>
-        <li>Data Ingestion & Processing (Dataflow, Kubernetes, etc.)</li>
-        <li>Pipeline Orchestrationo (Airflow, Cloud Composser, etc.)</li>
-        <li>SQL & NoSQL Databases (PostgreSQL, MongoDB, MySQL, etc.)</li>
-        <li>Cloud Services (Google Cloud Platform & Amazon Web Service)</li>
-        <li>Docker & Docker Composser</li>
-        <li>React & Next.Js</li>
-      </ul>
-    ),
-  },
-  {
-    title: "Education",
-    id: "education",
-    content: (
-      <ul className="list-disc pl-2">
-        <li>Industrial Engineering | Institut Teknologi Bandung, Indonesia</li>
-        <li>Full Stack Software Engineer - SeaLabs Bootcamp | SEA, Indonesia</li>
-      </ul>
-    ),
-  },
-  {
-    title: "Certifications",
-    id: "certifications",
-    content: (
-      <ul className="list-disc pl-2">
-        <li>Google Cloud Professional Data Engineer</li>
-      </ul>
-    ),
-  },
-];
 
 const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
   ssr: false,
@@ -54,15 +15,6 @@ const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
 })
 
 const AboutSection = () => {
-  const [tab, setTab] = useState("skills");
-  const [isPending, startTransition] = useTransition();
-
-  const handleTabChange = (id) => {
-    startTransition(() => {
-      setTab(id);
-    });
-  };
-
   let titleProps = {
     headerContent:"This is",
     headerContentUnderline:"my build",
@@ -72,7 +24,7 @@ const AboutSection = () => {
 
   return (
     <section className="
-      h-[300vh]
+      h-[500vh]
       relative
       text-white
       bg-[#202023]
@@ -89,31 +41,25 @@ const AboutSection = () => {
         h-[100vh]
         relative
       ">
-        {/* 
-        Option 1:
-          TODO: change these children to absolute left & right instead. 
-          why? to make sure the element on middle is clickable.
-          later on, we can disable the z-indexing for the 3d model.
-          it's okay if the 3 model doesn't show over the text.
-          as long as the button is clickable.
-        Option 2:
-          - move the button & interactable element to the right side.
-          - on mobile view:
-            - disable all grid spans. (no left-right side)
-            - keep the 3d model above so it didn't overlay
-            - enlarge the canvas size to 100% when not overlay.
-            (cons: need to re-render the page to resize canvas.)
-        */}
         <div className="grid grid-cols-12 gap-y-2">
-          <div className="col-start-2 col-span-4">
+          <div className="col-start-2 col-span-10 lg:col-start-2 lg:col-span-4">
             <AboutText/>
           </div>
-          <div className="col-span-10"></div>
-          <div className="col-start-8 col-span-4">
+          <div className="lg:col-span-8"/>
+          <div dir="rtl" className="rtl col-start-2 col-span-10 lg:col-start-8 lg:col-span-4">
             <EducationTimeline/>
           </div>
-          <div className="col-start-2 col-span-4">
+          <div className="lg:col-span-12 h-[10vh]"/>
+          <div className="col-start-2 col-span-10 lg:col-start-2 lg:col-span-4">
             <ExperienceTimeline/>
+          </div>
+          <div dir="rtl" className="rtl col-start-2 col-span-10 lg:col-start-8 lg:col-span-4">
+            <div className="h-[15vh]"/>
+            <InternshipTimeline/>
+          </div>
+          <div className="lg:col-span-12 h-[10vh]"></div>
+          <div className="col-start-2 col-span-10 lg:col-start-2 lg:col-span-4">
+            <VoluntaryTimeline/>
           </div>
         </div>
       </div>
