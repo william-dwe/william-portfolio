@@ -6,7 +6,7 @@ import EducationTimeline from "./AboutTimeline/EducationTimeline";
 import ExperienceTimeline from "./AboutTimeline/ExperienceTimeline";
 import InternshipTimeline from "./AboutTimeline/InternshipTimeline";
 import VoluntaryTimeline from "./AboutTimeline/VoluntaryTimeline";
-import IntroTitle from "./../IntroSection/IntroTitle"
+import SectionTitle from "../SectionTitle"
 import HeroImageryLoading from "./HeroImagery/HeroImageryLoading";
 
 const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
@@ -31,7 +31,7 @@ const AboutSection = () => {
       " id="about"
     >
       <div className="pointer-events-none z-50 relative lg:sticky lg:top-0">
-        <IntroTitle {...titleProps}/>
+        <SectionTitle {...titleProps}/>
         <div className="relative h-[85vh]">
           <LazyHeroImagery/>
         </div>

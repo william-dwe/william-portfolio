@@ -2,7 +2,7 @@
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef } from 'react';
 
-const IntroTitle = (
+const SectionTitle = (
   {
     headerContent="",
     headerContentUnderline="",
@@ -73,4 +73,4 @@ const Word = ({children, progress, range, additionalSuffix}) => {
   </div>
 }
 
-export default IntroTitle;
+export default SectionTitle;

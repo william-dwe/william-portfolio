@@ -9,9 +9,9 @@ import Picture7 from '../../public/images/paralax-7.jpg';
 import Image from 'next/image';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef } from 'react';
-import IntroTitle from "./IntroTitle"
+import SectionTitle from "../SectionTitle"
 
-const IntroSection = () => {
+const ZoomParalaxSection = () => {
     const ref = useRef(null);
     const containerScroll = useScroll({
         target: ref,
@@ -23,52 +23,53 @@ const IntroSection = () => {
     })
 
     
-    const scale4 = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 4]);
-    const scale5 = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 5]);
-    const scale6 = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 6]);
-    const scale8 = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 8]);
-    const scale9 = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 9]);
+    const mainScale = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 4]);
+    const subScaleA = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 6]);
+    const subScaleB = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 8]);
+    // const scale6 = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 6]);
+    // const scale8 = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 8]);
+    // const scale9 = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 9]);
 
     const pictures = [
         {
             src: Picture1,
-            scale: scale4,
+            scale: mainScale,
             class_suffix: " w-[25vw] h-[25vh]"
         },
         {
             src: Picture2,
-            scale: scale5,
-            opacityLimit: 0.15,
+            scale: subScaleB,
+            opacityLimit: 0.3,
             class_suffix: " top-[-30vh] left-[5vw] w-[35vw] h-[30vh]"
         },
         {
             src: Picture3,
-            scale: scale6,
-            opacityLimit: 0.3,
+            scale: subScaleA,
+            opacityLimit: 0.4,
             class_suffix: " top-[-10vh] left-[-25vw] w-[20vw] h-[45vh]"
         },
         {
             src: Picture4,
-            scale: scale5,
-            opacityLimit: 0.5,
+            scale: subScaleB,
+            opacityLimit: 0.4,
             class_suffix: " left-[27.5vw] w-[25vw] h-[25vh]"
         },
         {
             src: Picture5,
-            scale: scale6,
-            opacityLimit: 0.3,
+            scale: subScaleA,
+            opacityLimit: 0.4,
             class_suffix: " top-[27.5vh] left-[5vw] w-[20vw] h-[25vh]"
         },
         {
             src: Picture6,
-            scale: scale8,
-            opacityLimit: 0.15,
+            scale: subScaleB,
+            opacityLimit: 0.3,
             class_suffix: " top-[27.5vh] left-[-22.5vw] w-[30vw] h-[25vh]"
         },
         {
             src: Picture7,
-            scale: scale9,
-            opacityLimit: 0.3,
+            scale: subScaleA,
+            opacityLimit: 0.4,
             class_suffix: " top-[22.5vh] left-[25vw] w-[15vw] h-[15vh]"
         }
     ]
@@ -88,7 +89,7 @@ const IntroSection = () => {
                 <div className="
                     sticky top-0 mb-[-30vh] 
                 ">
-                    <IntroTitle
+                    <SectionTitle
                     {...titleProps}
                 />
                 </div>
@@ -149,4 +150,4 @@ const IntroSection = () => {
     )
 }
 
-export default IntroSection;
+export default ZoomParalaxSection;

@@ -1,13 +1,13 @@
 import HeroSection from "../components/HeroSection"
 import AboutSection from "../components/AboutSection"
-import IntroSection from "../components/IntroSection"
+import ZoomParalaxSection from "../components/ZoomParalaxSection"
 
 export default function Home() {
   return (
     <main>
       <HeroSection/>
-      <IntroSection/>
       <AboutSection/>
+      <ZoomParalaxSection/>
       <div className="h-screen"></div>
     </main>
   );
