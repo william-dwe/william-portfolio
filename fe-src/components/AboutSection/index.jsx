@@ -28,7 +28,6 @@ const AboutSection = () => {
     target: experienceRef,
     offset: ['start 0.6', 'end 0.3']
   })
-
   const opacityScale = useTransform(experienceScroll.scrollYProgress, [0, 0.15, 0.8, 1], [0, 1, 1, 0])
 
   return (
@@ -58,7 +57,7 @@ const AboutSection = () => {
       
       <AboutStats/>
 
-      <div className="relative h-[100vh] lg:sticky lg:top-[15vh] lg:h-[85vh]">
+      <div className="relative w-full h-[100vh] lg:sticky lg:top-0 lg:h-[100vh]">
         <LazyHeroImagery/>
       </div>
 
