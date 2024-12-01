@@ -35,7 +35,7 @@ const ServiceSection = () => {
     let titleProps = {
         headerContent:"Need help with",
         headerContentUnderline:"your data?",
-        subHeaderContent:"I'm specialized in, but still eager to learn more than",
+        subHeaderContent:"I'm specialized in, but eager to learn more than",
         titleHeight:"15vh"
     }
     let services = [
