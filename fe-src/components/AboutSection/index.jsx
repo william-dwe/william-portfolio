@@ -26,10 +26,10 @@ const AboutSection = () => {
   const experienceRef = useRef(null);
   const experienceScroll = useScroll({
     target: experienceRef,
-    offset: ['start 0.2', 'end 0.5']
+    offset: ['start 0.6', 'end 0.3']
   })
 
-  const opacityScale = useTransform(experienceScroll.scrollYProgress, [0, 0.15, 0.8, 1], [0, 0.3, 0.3, 0])
+  const opacityScale = useTransform(experienceScroll.scrollYProgress, [0, 0.15, 0.8, 1], [0, 1, 1, 0])
 
   return (
     <section className="
@@ -68,11 +68,13 @@ const AboutSection = () => {
       `}>
         <motion.div  
           style={{ opacity: opacityScale }}  
-          className="pointer-events-none fixed inset-0 bg-gray-600 transition-opacity duration-300"  
+          className="z-0 pointer-events-none backdrop-blur-[16px] backdrop-brightness-75 fixed inset-0 transition-opacity duration-100"  
         />  
         <div className="grid grid-cols-12 gap-y-2 mt-[5vh]">
           <div className="col-start-2 col-span-10 lg:col-start-2 lg:col-span-4 lg:mt-[10vh]">
-            <ExperienceTimeline/>
+            <div className='relative'>
+              <ExperienceTimeline/>
+            </div>
           </div>
           <div dir="rtl" className="rtl col-start-2 col-span-10 lg:col-start-8 lg:col-span-4">
             <div className="relative lg:top-[15vh]">

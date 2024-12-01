@@ -13,8 +13,8 @@ const AboutStats = () => {
     let stats = [
         {title: "Years of Experience", value: "2+"},
         {title: "Annual Processed Data", value: "1000TB+"},
-        {title: "Data Models Developed", value: "100+"},
         {title: "Data Source Aggregated", value: "10+"},
+        {title: "Certification & Awards", value: "2+"},
     ]
     return (
         <div className="relative mt-[10vh]">
@@ -25,7 +25,7 @@ const AboutStats = () => {
                 lg:leading-normal
                 text-center
             ">
-            Some Meaningful Numbers
+            Some Quantifiable Achievements
             </h2>  
             <div className="py-4 lg:px-[10vw] rounded-lg" id="stats">
                 <dl className="grid grid-cols-4 divide-x mx-auto text-gray-900 
