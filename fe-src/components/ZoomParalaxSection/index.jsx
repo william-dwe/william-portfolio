@@ -26,9 +26,6 @@ const ZoomParalaxSection = () => {
     const mainScale = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 4]);
     const subScaleA = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 6]);
     const subScaleB = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 8]);
-    // const scale6 = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 6]);
-    // const scale8 = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 8]);
-    // const scale9 = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 9]);
 
     const pictures = [
         {

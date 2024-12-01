@@ -26,6 +26,7 @@ const SectionTitle = (
       w-[80vw] h-[${titleHeight}]
       mx-auto 
       flex flex-col items-center justify-center
+      drop-shadow-2xl
     `}>
       <div className='
         font-bold
