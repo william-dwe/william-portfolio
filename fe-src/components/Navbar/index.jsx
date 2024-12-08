@@ -1,18 +1,33 @@
 "use client";
 import React, {useState, useEffect} from "react";
+import { usePathname } from 'next/navigation';
 
-const NavbarButton = (menuName, isSelected=false) => {
+const NavbarButton = (menuName, currentPage) => {
+  const path = currentPage.toLowerCase().split("/")[1]
+  const page = menuName.toLowerCase()
+
+  let isSelected = path == page
+  let linkPath = `/${page}`
+  
+  if (page == "home") {
+    linkPath = "/"
+    if (currentPage == "/") {
+      isSelected = true
+    }
+  }
+  
   return isSelected ? 
   <li className="block text-center align-middle">
-    <a href={`#${menuName}`} className="font-mono text-white hover:text-gray-600 bg-gray-900 p-2 rounded">{menuName}</a>
+    <a href={linkPath} className="font-mono text-white hover:text-gray-400 bg-gray-800 p-2 rounded">{menuName}</a>
   </li> 
   :
   <li className="block text-center align-middle">
-    <a href={`#${menuName}`} className="font-mono text-gray-400 hover:text-white p-2 rounded hover:backdrop-blur">{menuName}</a>
+    <a href={linkPath} className="font-mono text-gray-400 hover:text-white p-2 rounded hover:bg-gray-700">{menuName}</a>
   </li>
 }
 
 const Navbar = () => {
+  const currentPage = usePathname();
   const [isScrollUp, setIsScrollUp] = useState(true)
   const [isMenuOpened, setIsMenuOpened] = useState(false)
   
@@ -49,15 +64,15 @@ const Navbar = () => {
       >
         <span class="sr-only">Open main menu</span>
         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
         </svg>
       </button>
       <div className={`items-center justify-between ${isMenuOpened? "inline" : "hidden"} md:inline w-full md:w-auto md:order-1`} id="navbar">
         <ul className="flex gap-4 flex-col p-4 md:p-0 mt-4 font-medium md:space-x-8 md:flex-row md:mt-0 md:border-0">
-          {NavbarButton("Home", true)}
-          {NavbarButton("Service")}
-          {NavbarButton("About")}
-          {NavbarButton("Contact")}
+          {NavbarButton("Home", currentPage)}
+          {NavbarButton("About", currentPage)}
+          {NavbarButton("Project", currentPage)}
+          {NavbarButton("Blog", currentPage)}
         </ul>
       </div>
     </div>
