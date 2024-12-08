@@ -15,7 +15,7 @@ const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
   loading: () => <HeroImageryLoading />
 })
 
-const AboutSection = () => {
+const AboutSection = ({isParalax=true}) => {
   let titleProps = {
     headerContent:"This is",
     headerContentUnderline:"my build",
@@ -82,13 +82,16 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
-      <div className="
-        lg:h-[100vh]
-        w-full
-        absolute
-        bottom-0
-        bg-black
-      "></div>
+      {
+        isParalax ? 
+          <div className="
+            lg:h-[100vh]
+            w-full
+            absolute
+            bottom-0
+            bg-black
+          "/> 
+        : ""}
     </section>
   );
 };
