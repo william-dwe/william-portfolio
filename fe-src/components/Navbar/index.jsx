@@ -4,11 +4,11 @@ import React, {useState, useEffect} from "react";
 const NavbarButton = (menuName, isSelected=false) => {
   return isSelected ? 
   <li className="block text-center align-middle">
-    <a href="#" className="font-mono text-white hover:text-gray-600 bg-gray-900 p-2 rounded">{menuName}</a>
+    <a href={`#${menuName}`} className="font-mono text-white hover:text-gray-600 bg-gray-900 p-2 rounded">{menuName}</a>
   </li> 
   :
   <li className="block text-center align-middle">
-    <a href="#" className="font-mono text-gray-400 hover:text-white p-2 rounded hover:backdrop-blur">{menuName}</a>
+    <a href={`#${menuName}`} className="font-mono text-gray-400 hover:text-white p-2 rounded hover:backdrop-blur">{menuName}</a>
   </li>
 }
 
@@ -55,8 +55,8 @@ const Navbar = () => {
       <div className={`items-center justify-between ${isMenuOpened? "inline" : "hidden"} md:inline w-full md:w-auto md:order-1`} id="navbar">
         <ul className="flex gap-4 flex-col p-4 md:p-0 mt-4 font-medium md:space-x-8 md:flex-row md:mt-0 md:border-0">
           {NavbarButton("Home", true)}
-          {NavbarButton("About")}
           {NavbarButton("Service")}
+          {NavbarButton("About")}
           {NavbarButton("Contact")}
         </ul>
       </div>

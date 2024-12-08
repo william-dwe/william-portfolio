@@ -82,7 +82,7 @@ const ServiceSection = () => {
         relative
         text-white
         bg-black
-        " id="service"
+        " id="Service"
         >
         <div className="pointer-events-none z-50 sticky top-0 h-[15vh]">
             <SectionTitle {...titleProps}/>
