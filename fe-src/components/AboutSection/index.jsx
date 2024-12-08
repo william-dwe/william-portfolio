@@ -37,7 +37,7 @@ const AboutSection = () => {
       text-white
       bg-[#202023]
       mb-[-100vh]
-      " id="about"
+      " id="About"
     >
       <div className="sticky top-0 h-[15vh]">
         <SectionTitle {...titleProps}/>

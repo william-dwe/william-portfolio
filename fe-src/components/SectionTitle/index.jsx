@@ -7,7 +7,7 @@ const SectionTitle = (
     headerContent="",
     headerContentUnderline="",
     subHeaderContent="",
-    titleHeight="30vh"
+    titleHeight="20vh"
   }
 ) => {
   const container = useRef();
@@ -23,6 +23,7 @@ const SectionTitle = (
   return (
     <div ref={container} className={`
       relative align-middle
+      pt-[10vh]
       w-[80vw] h-[${titleHeight}]
       mx-auto 
       flex flex-col items-center justify-center
@@ -61,7 +62,7 @@ const SectionTitle = (
           })
         }
       </div>
-      <div className="to-bg-black-10 absolute top-0 w-full bg-gradient-to-t from-black/80 via-black/50"></div>
+      <div className="to-bg-black-10 absolute w-full bg-gradient-to-t from-black/80 via-black/50"></div>
     </div>
   );
 }
