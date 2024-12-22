@@ -9,7 +9,6 @@ import ExperienceTimeline from "./AboutTimeline/ExperienceTimeline";
 import InternshipTimeline from "./AboutTimeline/InternshipTimeline";
 import SectionTitle from "../SectionTitle"
 import HeroImageryLoading from "./HeroImagery/HeroImageryLoading";
-import { not } from 'three/webgpu';
 
 const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
   ssr: false,
