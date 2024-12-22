@@ -9,13 +9,43 @@ import ExperienceTimeline from "./AboutTimeline/ExperienceTimeline";
 import InternshipTimeline from "./AboutTimeline/InternshipTimeline";
 import SectionTitle from "../SectionTitle"
 import HeroImageryLoading from "./HeroImagery/HeroImageryLoading";
+import { not } from 'three/webgpu';
 
 const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
   ssr: false,
   loading: () => <HeroImageryLoading />
 })
 
-const AboutSection = ({isParalax=true}) => {
+const aboutmeSubSection = () => {
+  return <div className="relative grid grid-cols-12 gap-y-2 gap-x-5 lg:mt-[10vh]">
+    <div dir="rtl" className="rtl col-start-2 col-span-10 lg:col-start-2 lg:col-span-5">
+      <div className="relative lg:top-[5vh]">
+        <AboutText/>
+      </div>
+    </div>
+    <div className='col-start-2 col-span-10 lg:col-start-7 lg:col-span-5'>
+      <EducationTimeline/>
+    </div>
+  </div>
+}
+
+
+const timelineSubSection = () => {
+  return <div className="grid grid-cols-12 gap-y-2 mt-[5vh] pb-[10vh]">
+    <div className="col-start-2 col-span-10 lg:col-start-2 lg:col-span-4 lg:mt-[10vh]">
+      <div className='relative'>
+        <ExperienceTimeline/>
+      </div>
+    </div>
+    <div dir="rtl" className="rtl col-start-2 col-span-10 lg:col-start-8 lg:col-span-4">
+      <div className="relative lg:top-[15vh]">
+        <InternshipTimeline/>
+      </div>
+    </div>
+  </div>
+}
+
+const AboutSection = ({isParalax=true, isShowingModel=true}) => {
   let titleProps = {
     headerContent:"This is",
     headerContentUnderline:"my build",
@@ -28,70 +58,59 @@ const AboutSection = ({isParalax=true}) => {
     target: experienceRef,
     offset: ['start 0.6', 'end 0.3']
   })
-  const opacityScale = useTransform(experienceScroll.scrollYProgress, [0, 0.15, 0.8, 1], [0, 1, 1, 0])
+  const experienceOpacityScale = useTransform(experienceScroll.scrollYProgress, [0, 0.15, 0.8, 1], [0, 1, 1, 0])
+
+  const aboutmeRef = useRef(null);
+  const aboutmeScroll = useScroll({
+    target: aboutmeRef,
+    offset: ['start 0.6', 'end 0.3']
+  })
+  const aboutmeOpacityScale = useTransform(aboutmeScroll.scrollYProgress, [0, 0.15, 0.8, 1], [0, 1, 1, 0])
 
   return (
-    <section className="
-      h-[450vh]
+    <section className={`
       relative
       text-white
-      bg-[#202023]
-      mb-[-100vh]
-      " id="About"
+      bg-gradient-radial from-black to-gray-800
+      animate-gradient-xy
+      `} id="About"
     >
-      <div className="sticky top-0 h-[15vh]">
+      <div className={isShowingModel ? "sticky top-0 h-[15vh] mb-[-15vh]" : ""}>
         <SectionTitle {...titleProps}/>
       </div>
-      <div className="relative lg:mb-[5vh]">
-        <div className="relative grid grid-cols-12 gap-y-2 gap-x-5 lg:mt-[10vh]">
-          <div dir="rtl" className="rtl col-start-2 col-span-10 lg:col-start-2 lg:col-span-5">
-            <div className="relative lg:top-[5vh]">
-              <AboutText/>
-            </div>
-          </div>
-          <div className='col-start-2 col-span-10 lg:col-start-7 lg:col-span-5'>
-            <EducationTimeline/>
-          </div>
-        </div>
-      </div>
-      
-      <AboutStats/>
-
+ 
+      {isShowingModel ?
       <div className="relative w-full h-[100vh] lg:sticky lg:top-0">
-        <LazyHeroImagery/>
+        <LazyHeroImagery/>  
+      </div>
+      : ""}
+
+      <div className={isShowingModel ? "lg:h-[50vh] w-full" : ""}/> 
+
+      <div ref={aboutmeRef} className="relative lg:mb-[5vh]">
+        {isShowingModel ?
+        <motion.div  
+          style={{ opacity: aboutmeOpacityScale }}  
+          className="z-0 pointer-events-none backdrop-blur-[16px] backdrop-brightness-75 fixed inset-0 transition-opacity duration-100"  
+        />
+        :""}
+        {aboutmeSubSection()}
+        <AboutStats/>
       </div>
 
-      <div ref={experienceRef} className={`
-        h-auto
-        relative
-      `}>
+      <div className={isShowingModel ? "lg:h-[100vh] w-full" : ""}/> 
+
+      <div ref={experienceRef} className='h-full relative'>
+        {isShowingModel ?
         <motion.div  
-          style={{ opacity: opacityScale }}  
+          style={{ opacity: experienceOpacityScale }}  
           className="z-0 pointer-events-none backdrop-blur-[16px] backdrop-brightness-75 fixed inset-0 transition-opacity duration-100"  
-        />  
-        <div className="grid grid-cols-12 gap-y-2 mt-[5vh]">
-          <div className="col-start-2 col-span-10 lg:col-start-2 lg:col-span-4 lg:mt-[10vh]">
-            <div className='relative'>
-              <ExperienceTimeline/>
-            </div>
-          </div>
-          <div dir="rtl" className="rtl col-start-2 col-span-10 lg:col-start-8 lg:col-span-4">
-            <div className="relative lg:top-[15vh]">
-              <InternshipTimeline/>
-            </div>
-          </div>
-        </div>
+        />
+        :""}
+        {timelineSubSection()}
       </div>
-      {
-        isParalax ? 
-          <div className="
-            lg:h-[100vh]
-            w-full
-            absolute
-            bottom-0
-            bg-black
-          "/> 
-        : ""}
+
+      <div className={isShowingModel ? "lg:h-[100vh] w-full" : ""}/>
     </section>
   );
 };

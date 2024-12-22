@@ -6,7 +6,7 @@ export default function Project() {
   return (
     <main>
       <ServiceSection/>
-      <AboutSection/>
+      <AboutSection isShowingModel={false}/>
       <ZoomParalaxSection/>
     </main>
   );

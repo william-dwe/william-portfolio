@@ -33,9 +33,9 @@ const serviceCard = (service, index) => {
 
 const ServiceSection = () => {
     let titleProps = {
-        headerContent:"Need help with",
-        headerContentUnderline:"your data?",
-        subHeaderContent:"I'm specialized in, but eager to learn more than",
+        headerContent:"Need to 10X your",
+        headerContentUnderline:"Data Gameplay?",
+        subHeaderContent:"Let me assist you on your journey in unveiling these areas.",
         titleHeight:"15vh"
     }
     let services = [
