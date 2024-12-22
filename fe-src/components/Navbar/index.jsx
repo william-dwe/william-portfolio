@@ -49,7 +49,7 @@ const Navbar = () => {
   }, []);
 
   return <nav 
-    style={{opacity: isScrollUp ? 1 : 0, "pointer-events": isScrollUp ? "auto" : "none"}} 
+    style={{opacity: isScrollUp ? 1 : 0, "pointerEvents": isScrollUp ? "auto" : "none"}} 
     className="transition-opacity delay-100 duration-500 ease-in-out backdrop-blur backdrop-brightness-75 fixed w-full z-50 top-0 start-0"
   >
     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
