@@ -9,7 +9,6 @@ import ExperienceTimeline from "./AboutTimeline/ExperienceTimeline";
 import InternshipTimeline from "./AboutTimeline/InternshipTimeline";
 import SectionTitle from "../SectionTitle"
 import HeroImageryLoading from "./HeroImagery/HeroImageryLoading";
-import { not } from 'three/webgpu';
 
 const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
   ssr: false,
@@ -30,20 +29,20 @@ const aboutmeSubSection = () => {
 }
 
 
-const timelineSubSection = () => {
+const timelineSubSection = ((isShowingModel) => {
   return <div className="grid grid-cols-12 gap-y-2 mt-[5vh] pb-[10vh]">
-    <div className="col-start-2 col-span-10 lg:col-start-2 lg:col-span-4 lg:mt-[10vh]">
+    <div className={"col-start-2 col-span-10" + (isShowingModel ? " lg:col-start-2 lg:col-span-4 lg:mt-[10vh]" : "")}>
       <div className='relative'>
         <ExperienceTimeline/>
       </div>
     </div>
-    <div dir="rtl" className="rtl col-start-2 col-span-10 lg:col-start-8 lg:col-span-4">
-      <div className="relative lg:top-[15vh]">
+    <div dir={(isShowingModel ? "rtl" : "")} className={"col-start-2 col-span-10" + (isShowingModel ? " rtl lg:col-start-8 lg:col-span-4": "")}>
+      <div className={"relative" + (isShowingModel ? "lg:top-[15vh]" : "")}>
         <InternshipTimeline/>
       </div>
     </div>
   </div>
-}
+})
 
 const AboutSection = ({isParalax=true, isShowingModel=true}) => {
   let titleProps = {
@@ -107,7 +106,7 @@ const AboutSection = ({isParalax=true, isShowingModel=true}) => {
           className="z-0 pointer-events-none backdrop-blur-[16px] backdrop-brightness-75 fixed inset-0 transition-opacity duration-100"  
         />
         :""}
-        {timelineSubSection()}
+        {timelineSubSection(isShowingModel)}
       </div>
 
       <div className={isShowingModel ? "lg:h-[100vh] w-full" : ""}/>

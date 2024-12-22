@@ -3,7 +3,7 @@ import React from "react";
 import SectionTitle from "../SectionTitle"
 
 const serviceCard = (service, index) => {
-    return <div key={index} className="relative max-w-l bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    return <div key={index} className="relative max-w-l bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:border-white transition-all ease-in-out duration-300 transform hover:scale-110">
         <a href="#">
             <img className="rounded-t-lg" src={service.imageSrc} alt={service.imageAlt} />
         </a>
