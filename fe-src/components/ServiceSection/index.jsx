@@ -84,7 +84,8 @@ const ServiceSection = () => {
         bg-black
         " id="Service"
         >
-        <div className="pointer-events-none z-50 sticky top-0 h-[15vh]">
+        {/* <div className="pointer-events-none z-50 sticky top-0 h-[15vh]"> */}
+        <div className="pb-[5vh]">
             <SectionTitle {...titleProps}/>
         </div>
         <div className="mt-[5vh] grid grid-cols-1 lg:grid-cols-3 gap-8 px-[10vw]">
