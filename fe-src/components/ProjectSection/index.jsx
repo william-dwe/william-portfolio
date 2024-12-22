@@ -35,12 +35,11 @@ const tagsIcons = (tags => {
 })
 
 const projectCard = (() => {
-
-  return <ul className="relative grid grid-cols-12 gap-y-2 gap-x-5 lg:mt-[10vh]">  
+  return <ul className="relative grid grid-cols-12 gap-y-5 gap-x-5 lg:mt-[10vh]">  
     {projects && projects.projects.map((project, index) => {
       return (
-      <li key={index} className="col-start-2 col-span-10 lg:col-start-4 lg:col-span-6 p-4 border rounded shadow-md hover:shadow-lg transition-shadow duration-300">
-        <h2 className="text-xl font-semibold text-white">{project.title}</h2>  
+      <li key={index} className="col-start-2 col-span-10 lg:col-start-4 lg:col-span-6 p-4 border border-gray-800 hover:border-white rounded shadow-md hover:shadow-lg transition-all ease-in-out duration-300 transform hover:scale-110">
+        <h2 className="text-2xl font-semibold text-white">{project.title}</h2>  
         <p className="my-2 text-gray-700">{project.description}</p>
         {tagsIcons(project.tags)}
         <div className="flex flex-row py-2 gap-2">
