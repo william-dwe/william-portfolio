@@ -128,7 +128,7 @@ const ZoomParalaxSection = () => {
                                         justify-center
                                     `}
                                 >
-                                    <div className={"[&>.img]:object-cover relative" + class_suffix}>
+                                    <div className={"relative" + class_suffix}>
                                             <Image
                                                 src={src}
                                                 fill={true}

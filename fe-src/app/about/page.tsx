@@ -1,9 +1,13 @@
+import ServiceSection from "../../components/ServiceSection"
 import AboutSection from "@/components/AboutSection";
+import ZoomParalaxSection from "../../components/ZoomParalaxSection"
 
 export default function Project() {
   return (
     <main>
-      <AboutSection isParalax={false}/>
+      <ServiceSection/>
+      <AboutSection/>
+      <ZoomParalaxSection/>
     </main>
   );
 }

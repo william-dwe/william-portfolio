@@ -57,7 +57,7 @@ const AboutSection = ({isParalax=true}) => {
       
       <AboutStats/>
 
-      <div className="relative w-full h-[100vh] lg:sticky lg:top-0 lg:h-[100vh]">
+      <div className="relative w-full h-[100vh] lg:sticky lg:top-0">
         <LazyHeroImagery/>
       </div>
 
