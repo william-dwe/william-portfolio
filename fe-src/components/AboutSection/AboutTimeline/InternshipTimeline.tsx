@@ -5,7 +5,6 @@ import timepoint_content from '../AboutTimeline'
 const InternshipTimeline = () => {
     return (
         <>
-            <h2 className="text-4xl font-bold text-white mb-4">Internships</h2>
             <ol className="relative border-s border-gray-200 dark:border-gray-700">                  
                 <li className="ms-4">
                     {

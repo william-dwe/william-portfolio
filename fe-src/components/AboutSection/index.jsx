@@ -31,12 +31,12 @@ const aboutmeSubSection = () => {
 
 const timelineSubSection = ((isShowingModel) => {
   return <div className="grid grid-cols-12 gap-y-2 mt-[5vh] pb-[10vh]">
-    <div className={"col-start-2 col-span-10" + (isShowingModel ? " lg:col-start-2 lg:col-span-4 lg:mt-[10vh]" : "")}>
+    <div className={"col-start-2 col-span-10" + (isShowingModel ? " lg:col-start-2 lg:col-span-4" : "")}>
       <div className='relative'>
         <ExperienceTimeline/>
       </div>
     </div>
-    <div dir={(isShowingModel ? "rtl" : "")} className={"col-start-2 col-span-10" + (isShowingModel ? " rtl lg:col-start-8 lg:col-span-4": "")}>
+    <div dir={(isShowingModel ? "rtl" : "")} className={"col-start-2 col-span-10" + (isShowingModel ? " rtl lg:col-start-8 lg:col-span-4 lg:mt-[15vh]": "")}>
       <div className={"relative" + (isShowingModel ? "lg:top-[15vh]" : "")}>
         <InternshipTimeline/>
       </div>
@@ -70,7 +70,7 @@ const AboutSection = ({isParalax=true, isShowingModel=true}) => {
     <section className={`
       relative
       text-white
-      bg-gradient-radial from-black to-gray-800
+      bg-gradient-radial from-black to-gray-600
       animate-gradient-xy
       `} id="About"
     >

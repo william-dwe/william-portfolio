@@ -11,7 +11,7 @@ const ExperienceTimeline = () => {
                     {
                         timepoint_content(
                             "October 2023 - Present",
-                            "PT Trinusa Travelindo (Traveloka)",
+                            "Traveloka",
                             "Data Engineer - Data Warehouse Engineer",
                             [
                                 "Developed a custom script for Google Ads and Google Hotel API ingestion, reducing memory overhead by 75%.",
