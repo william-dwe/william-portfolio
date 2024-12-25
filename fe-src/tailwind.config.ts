@@ -57,7 +57,14 @@ const config: Config = {
       p2: '#79453D',
       p3: '#C7AB62',
       p4: '#6A7E35',
-      p5: '#0C1713'
+      p5: '#0C1713',
+      
+      // Update these if you've customized them
+      sky: colors.sky, // Previously lightBlue
+      stone: colors.stone, // Previously warmGray
+      neutral: colors.neutral, // Previously trueGray
+      gray: colors.gray, // Previously coolGray
+      slate: colors.slate, // Previously blueGray
     }
   },
   plugins: [],

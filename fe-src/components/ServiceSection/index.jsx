@@ -1,12 +1,21 @@
 "use client";
 import Link from 'next/link';
+import Image from 'next/image';
 import React from "react";
-import SectionTitle from "../SectionTitle"
+import SectionTitle from "../SectionTitle";
+import Service1 from '../../public/images/service-1.png';
+import Service2 from '../../public/images/service-2.png';
+import Service3 from '../../public/images/service-3.png';
 
-const serviceCard = (service, index) => {
-    return <div key={index} className="relative max-w-l bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:border-white transition-all ease-in-out duration-300 transform hover:scale-110">
+const ServiceCard = ({service}) => {
+    return <div className="relative max-w-l bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:border-white transition-all ease-in-out duration-300 transform hover:scale-110">
         <Link href="#">
-            <img className="rounded-t-lg" src={service.imageSrc} alt={service.imageAlt} />
+            <Image 
+                className="rounded-t-lg" 
+                src={service.imageSrc} 
+                alt={service.imageAlt} 
+                placeholder='blur'
+                />
         </Link>
         <div className="p-5">
             <Link href="#">
@@ -48,7 +57,7 @@ const ServiceSection = () => {
                 'Transform: Apply advanced data modeling for actionable insights.',
                 'Load: Store structured data in scalable warehouses.',
             ],
-            imageSrc: '/images/service-1.png',
+            imageSrc: Service1,
             imageAlt: 'ETL Process Workflow',
         },
         {
@@ -59,7 +68,7 @@ const ServiceSection = () => {
                 'Pipeline Scheduler: Orchestrate workflows using Airflow.',
                 'Pipeline Orchestrator: Scale processes with Kubernetes.',
             ],
-            imageSrc: '/images/service-3.png', 
+            imageSrc: Service3, 
             imageAlt: 'Data Platform Diagram',
         },
         {
@@ -72,7 +81,7 @@ const ServiceSection = () => {
                 'Timeliness: Receive data when you need it.',
                 'Consistency: Align data across systems.',
             ],
-            imageSrc: '/images/service-2.png', 
+            imageSrc: Service2, 
             imageAlt: 'Data Governance Visual',
         },
     ]
@@ -91,7 +100,7 @@ const ServiceSection = () => {
         </div>
         <div className="mt-[5vh] grid grid-cols-1 lg:grid-cols-3 gap-8 px-[10vw]">
             {
-                services.map((service, index) => serviceCard(service, index))
+                services.map((service, index) => <ServiceCard key={index} service={service} />)
             }
         </div>
     </section>

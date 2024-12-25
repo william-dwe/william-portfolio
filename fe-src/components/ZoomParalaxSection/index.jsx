@@ -11,63 +11,111 @@ import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef } from 'react';
 import SectionTitle from "../SectionTitle"
 
+const ParalaxImage = ({ index, picture, contentScroll, containerScroll, numPicture }) => {
+    
+    const fadeInStart = index/numPicture
+    const fadeInEnd = fadeInStart + (1/ numPicture)
+    
+    let zoomOpacity = 1
+    let finalOpacity = 1
+    if (index != 0) {
+        zoomOpacity = 0.8
+        finalOpacity = 0
+    }
+
+    const scrollTrackingIntegrator = useTransform(
+        [contentScroll.scrollYProgress, containerScroll.scrollYProgress],
+        ([x, y]) => x + y
+    );
+
+    const contentFadeTransformer = useTransform(scrollTrackingIntegrator, [fadeInStart, fadeInEnd, 1, 1+picture.opacityLimit], [0, zoomOpacity, zoomOpacity, finalOpacity])
+
+    let styleVar = {
+        scale: picture.scale,
+        opacity: contentFadeTransformer
+    }
+
+    return <motion.div 
+            key={index} 
+            style={styleVar}
+            className={`
+                w-full h-full top-0
+                absolute
+                flex
+                items-center
+                justify-center
+            `}
+        >
+            <div className={"relative" + picture.classSuffix}>
+                    <Image
+                        src={picture.src}
+                        fill={true}
+                        alt="image"
+                        placeholder='blur'
+                        className="object-cover"
+                    />
+            </div>
+        </motion.div>
+}
+
 const ZoomParalaxSection = () => {
     const ref = useRef(null);
-    const containerScroll = useScroll({
-        target: ref,
-        offset: ['start -0.3', 'end 0.7']
-    })
     const contentScroll = useScroll({
         target: ref,
         offset: ['start 0.3', 'start -0.3']
     })
-
+    const containerScroll = useScroll({
+        target: ref,
+        offset: ['start -0.3', 'end 0.7']
+    })
     
     const mainScale = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 4]);
     const subScaleA = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 6]);
     const subScaleB = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 8]);
 
+    const scrollTrackingIntegrator = useTransform(() => contentScroll.scrollYProgress.get() + containerScroll.scrollYProgress.get())
+
     const pictures = [
         {
             src: Picture1,
             scale: mainScale,
-            class_suffix: " w-[25vw] h-[25vh]"
+            classSuffix: " w-[25vw] h-[25vh]"
         },
         {
             src: Picture2,
             scale: subScaleB,
             opacityLimit: 0.3,
-            class_suffix: " top-[-30vh] left-[5vw] w-[35vw] h-[30vh]"
+            classSuffix: " top-[-30vh] left-[5vw] w-[35vw] h-[30vh]"
         },
         {
             src: Picture3,
             scale: subScaleA,
             opacityLimit: 0.4,
-            class_suffix: " top-[-10vh] left-[-25vw] w-[20vw] h-[45vh]"
+            classSuffix: " top-[-10vh] left-[-25vw] w-[20vw] h-[45vh]"
         },
         {
             src: Picture4,
             scale: subScaleB,
             opacityLimit: 0.4,
-            class_suffix: " left-[27.5vw] w-[25vw] h-[25vh]"
+            classSuffix: " left-[27.5vw] w-[25vw] h-[25vh]"
         },
         {
             src: Picture5,
             scale: subScaleA,
             opacityLimit: 0.4,
-            class_suffix: " top-[27.5vh] left-[5vw] w-[20vw] h-[25vh]"
+            classSuffix: " top-[27.5vh] left-[5vw] w-[20vw] h-[25vh]"
         },
         {
             src: Picture6,
             scale: subScaleB,
             opacityLimit: 0.3,
-            class_suffix: " top-[27.5vh] left-[-22.5vw] w-[30vw] h-[25vh]"
+            classSuffix: " top-[27.5vh] left-[-22.5vw] w-[30vw] h-[25vh]"
         },
         {
             src: Picture7,
             scale: subScaleA,
             opacityLimit: 0.4,
-            class_suffix: " top-[22.5vh] left-[25vw] w-[15vw] h-[15vh]"
+            classSuffix: " top-[22.5vh] left-[25vw] w-[15vw] h-[15vh]"
         }
     ]
 
@@ -98,47 +146,7 @@ const ZoomParalaxSection = () => {
                     overflow-hidden
                 ">
                     {
-                        pictures.map( ({src, scale, opacityLimit, class_suffix}, index) => {
-                            const fadeInStart = index/pictures.length
-                            const fadeInEnd = fadeInStart + (1/ pictures.length)
-                            const scrollTrackingIntegrator = useTransform(() => contentScroll.scrollYProgress.get() + containerScroll.scrollYProgress.get())
-                            
-                            let zoomOpacity = 1
-                            let finalOpacity = 1
-                            if (index != 0) {
-                                zoomOpacity = 0.8
-                                finalOpacity = 0
-                            }
-
-                            const contentFadeTransformer = useTransform(scrollTrackingIntegrator, [fadeInStart, fadeInEnd, 1, 1+opacityLimit], [0, zoomOpacity, zoomOpacity, finalOpacity])
-
-                            let styleVar = {
-                                scale: scale,
-                                opacity: contentFadeTransformer
-                            }
-
-                            return <motion.div 
-                                    key={index} 
-                                    style={styleVar}
-                                    className={`
-                                        w-full h-full top-0
-                                        absolute
-                                        flex
-                                        items-center
-                                        justify-center
-                                    `}
-                                >
-                                    <div className={"relative" + class_suffix}>
-                                            <Image
-                                                src={src}
-                                                fill={true}
-                                                alt="image"
-                                                placeholder='blur'
-                                                className="object-cover"
-                                            />
-                                    </div>
-                                </motion.div>
-                        })
+                        pictures.map((picture, index) => <ParalaxImage key={index} picture={picture} contentScroll={contentScroll} containerScroll={containerScroll} numPicture={pictures.length}/>)
                     }
                 </div>
             </div>
