@@ -64,8 +64,10 @@ const BlogSection = () => {
     subHeaderContent:"Here are some of my recorded thoughts.",
     titleHeight:"15vh"
   }
-  return <section className="text-white h-[100vh]" id="Blog"> 
-    <SectionTitle {...titleProps}/>
+  return <section className="relative text-white min-h-screen" id="Blog"> 
+    <div className="relative mb-[10vh] lg:top-0 lg:sticky">
+      <SectionTitle {...titleProps}/>
+    </div>
     {blogCard()}
   </section>
 }

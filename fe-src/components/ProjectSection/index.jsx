@@ -69,8 +69,10 @@ const ProjectSection = () => {
     subHeaderContent:"Here are some of my recorded works.",
     titleHeight:"15vh"
   }
-  return <section className="text-white h-[100vh]" id="Project"> 
-    <SectionTitle {...titleProps}/>
+  return <section className="relative text-white min-h-screen" id="Project"> 
+    <div className="relative mb-[10vh] lg:top-0 lg:sticky">
+      <SectionTitle {...titleProps}/>
+    </div>
     {projectCard()}
   </section>
 }
