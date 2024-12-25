@@ -47,7 +47,7 @@ const timelineSubSection = ((isShowingModel) => {
 const AboutSection = ({isParalax=true, isShowingModel=true}) => {
   let titleProps = {
     headerContent:"This is",
-    headerContentUnderline:"my build",
+    headerContentUnderline:"my Build",
     subHeaderContent:"<William's character profile/>",
     titleHeight:"15vh"
   }
