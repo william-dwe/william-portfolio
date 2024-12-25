@@ -28,6 +28,7 @@ const ZoomParalaxTitle = (
       flex flex-col items-center justify-center
     `}>
       <div className='
+        relative
         font-bold
         text-2xl md:text-4xl lg:text-6xl 
         text-white text-center

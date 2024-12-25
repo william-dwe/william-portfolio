@@ -30,6 +30,7 @@ const SectionTitle = (
       drop-shadow-2xl
     `}>
       <div className='
+        relative
         font-bold
         text-2xl md:text-4xl lg:text-6xl 
         text-white text-center

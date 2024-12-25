@@ -102,6 +102,7 @@ const HeroImagery = () => {
 
   return (
     <div onMouseMove={handleMouseMove} className="
+      relative
       w-full h-full place-self-center lg:mt-0
       flex justify-center items-center
     ">
