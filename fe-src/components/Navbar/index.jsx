@@ -1,4 +1,5 @@
 "use client";
+import Link from 'next/link';
 import React, {useState, useEffect} from "react";
 import { usePathname } from 'next/navigation';
 
@@ -18,11 +19,11 @@ const NavbarButton = (menuName, currentPage) => {
   
   return isSelected ? 
   <li className="block text-center align-middle">
-    <a href={linkPath} className="font-mono text-white hover:text-gray-400 bg-gray-800 p-2 rounded">{menuName}</a>
+    <Link href={linkPath} className="font-mono text-white hover:text-gray-400 bg-gray-800 p-2 rounded">{menuName}</Link>
   </li> 
   :
   <li className="block text-center align-middle">
-    <a href={linkPath} className="font-mono text-gray-400 hover:text-white p-2 rounded hover:bg-gray-700">{menuName}</a>
+    <Link href={linkPath} className="font-mono text-gray-400 hover:text-white p-2 rounded hover:bg-gray-700">{menuName}</Link>
   </li>
 }
 
@@ -53,9 +54,9 @@ const Navbar = () => {
     className="transition-opacity delay-100 duration-500 ease-in-out backdrop-blur backdrop-brightness-75 fixed w-full z-50 top-0 start-0"
   >
     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="#" className="flex items-center space-x-3">
+      <Link href="#" className="flex items-center space-x-3">
           <span className="self-center font-mono text-2xl whitespace-nowrap dark:text-white">William Wibowo</span>
-      </a>
+      </Link>
       <button 
         data-collapse-toggle="navbar" 
         type="button" 

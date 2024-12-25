@@ -1,10 +1,10 @@
 "use client";
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useRef, useState, useEffect } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { Canvas, useLoader, useFrame } from "@react-three/fiber";
 import { OrbitControls, Plane, Sky, Sphere } from "@react-three/drei";
 
-const RotatingModel = ({hovered, setHover, setClicked, setMoved}) => {
+const RotatingModel = ({hovered, clicked, setHover, setClicked, setMoved}) => {
   const gltf = useLoader(GLTFLoader, '/images/avatar.glb')
 
   gltf.scene.traverse(function (child) {
@@ -13,13 +13,43 @@ const RotatingModel = ({hovered, setHover, setClicked, setMoved}) => {
   })
   const myMesh = React.useRef();
 
+  const startTime = useRef(null);
+  const [zoomMultiplier, zetZoomMultiplier] = useState(1)
+  const [rotationSpeedMultiplier, setRotationSpeedMultiplier] = useState(1)
+  const [initialRotationActive, setInitialRotationActive] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInitialRotationActive(false);
+    }, 750); // 750ms
+
+    return () => clearTimeout(timer); // Clear timeout on unmount or re-render
+  }, []);
+
   useFrame((state, delta) => {
-    if (hovered) {
-      myMesh.current.rotation.y += delta/Math.PI;
+    let targetMultiplier = 1;
+    let targetZoom = 1;
+
+    if (clicked) {
+      targetMultiplier = 0;
+      targetZoom = 1.2;
+    } else if (initialRotationActive) {
+      const elapsedTime = Date.now() - startTime.current;
+      const progress = Math.min(elapsedTime / 750, 1); // Progress from 0 to 1 over 750ms
+      targetMultiplier = 1 + (36 * progress); // Linearly interpolate from 1 to 37
+      targetZoom = 1 + (1 - progress/2); // Linearly interpolate from 2 to 1.5
+    } else if (hovered) {
+      targetMultiplier = 2;
+      targetZoom = 1.2;
     }
-    else {
-      myMesh.current.rotation.y += delta;
-    }
+
+    setRotationSpeedMultiplier(prevMultiplier => {
+      const smoothMultiplier = prevMultiplier + (targetMultiplier - prevMultiplier) * 0.1; // Smooth transition
+      return smoothMultiplier
+    })
+    zetZoomMultiplier(prevZoom => prevZoom + (targetZoom - prevZoom) * 0.05)
+
+    myMesh.current.rotation.y += delta * rotationSpeedMultiplier;
+    myMesh.current.scale.set(zoomMultiplier, zoomMultiplier, zoomMultiplier)
   });
 
   const handleClick = () => {
@@ -83,7 +113,7 @@ const HeroImagery = () => {
           shadows camera={{ position: [-0.5, -0.5, 1.3]}}
         >
           <Suspense fallback={null}>
-            <RotatingModel hovered={hovered} setHover={setHover} setClicked={setClicked} setMoved={setMoved}/>
+            <RotatingModel hovered={hovered} clicked={clicked} setHover={setHover} setClicked={setClicked} setMoved={setMoved}/>
           </Suspense>
         </Canvas>
       </div>

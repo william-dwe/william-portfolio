@@ -1,6 +1,6 @@
 "use client";
-import React, {useState, useEffect} from "react";
-import { usePathname } from 'next/navigation';
+import React from "react";
+import Link from 'next/link';
 
 const Footer = () => {
   return <footer
@@ -46,13 +46,13 @@ const Footer = () => {
             Shortcuts
           </h6>
           <p className="mb-4">
-            <a href="#!">About</a>
+            <Link href="/about">About</Link>
           </p>
           <p className="mb-4">
-            <a href="#!">Projects</a>
+            <Link href="/project">Projects</Link>
           </p>
           <p className="mb-4">
-            <a href="#!">Blogs</a>
+            <Link href="/blog">Blogs</Link>
           </p>
         </div>
         <div className="lg:col-start-9 lg:col-span-2">

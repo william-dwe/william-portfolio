@@ -1,16 +1,17 @@
 "use client";
+import Link from 'next/link';
 import React from "react";
 import SectionTitle from "../SectionTitle"
 
 const serviceCard = (service, index) => {
     return <div key={index} className="relative max-w-l bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:border-white transition-all ease-in-out duration-300 transform hover:scale-110">
-        <a href="#">
+        <Link href="#">
             <img className="rounded-t-lg" src={service.imageSrc} alt={service.imageAlt} />
-        </a>
+        </Link>
         <div className="p-5">
-            <a href="#">
+            <Link href="#">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{service.title}</h5>
-            </a>
+            </Link>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{service.description}</p>
             <ul className="service-details ml-8 font-normal list-disc text-gray-700 dark:text-gray-400 mb-0">
                 {service.details.map((detail, i) => (
