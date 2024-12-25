@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return <footer
-    className="absolute bottom-0 w-full backdrop-blur backdrop-brightness-75">
+    className="relative lg:absolute lg:bottom-0 w-full backdrop-blur backdrop-brightness-75">
     <div className="mx-6 py-10 text-center lg:text-left">
       <div className="h-[15vh] grid grid-cols-1 gap-8 lg:grid-cols-12 justify-items-center">
         <div className="lg:col-start-3 lg:col-span-3">

@@ -8,7 +8,7 @@ import Service2 from '../../public/images/service-2.png';
 import Service3 from '../../public/images/service-3.png';
 
 const ServiceCard = ({service}) => {
-    return <div className="relative max-w-l bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:border-white transition-all ease-in-out duration-300 transform hover:scale-110">
+    return <div className="relative max-w-l bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:border-white transition-all ease-in-out duration-300 transform lg:hover:scale-110">
         <Link href="#">
             <Image 
                 className="rounded-t-lg" 

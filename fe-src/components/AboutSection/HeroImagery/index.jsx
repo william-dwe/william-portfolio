@@ -119,7 +119,7 @@ const HeroImagery = () => {
         </Canvas>
       </div>
       {hovered && !moved && (  
-        <div style={{ position: 'absolute', top: position.y, left: position.x }} className="animate-pulse px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm dark:bg-gray-700">  
+        <div style={{ position: 'absolute', top: position.y, left: position.x }} className="hidden lg:visible animate-pulse px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm dark:bg-gray-700">  
             [ProTip] Try to move me around?
         </div>  
       )}  

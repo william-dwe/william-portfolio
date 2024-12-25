@@ -1,7 +1,7 @@
 "use client";
 import dynamic from 'next/dynamic'
 import { useScroll, useTransform, motion } from 'framer-motion';
-import React, {useRef} from "react";
+import React, { useRef, useState, useEffect} from "react";
 import AboutText from "./AboutText";
 import AboutStats from "./AboutStats"
 import EducationTimeline from "./AboutTimeline/EducationTimeline";
@@ -15,9 +15,9 @@ const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
   loading: () => <HeroImageryLoading />
 })
 
-const aboutmeSubSection = () => {
+const aboutmeSubSection = ((direction) => {
   return <div className="relative grid grid-cols-12 gap-y-2 gap-x-5 lg:mt-[10vh]">
-    <div dir="rtl" className="rtl col-start-2 col-span-10 lg:col-start-2 lg:col-span-5">
+    <div dir={direction} className="lg:rtl col-start-2 col-span-10 lg:col-start-2 lg:col-span-5">
       <div className="relative lg:top-[5vh]">
         <AboutText/>
       </div>
@@ -26,17 +26,17 @@ const aboutmeSubSection = () => {
       <EducationTimeline/>
     </div>
   </div>
-}
+})
 
 
-const timelineSubSection = ((isShowingModel) => {
+const timelineSubSection = ((direction, isShowingModel) => {
   return <div className="grid grid-cols-12 gap-y-2 mt-[5vh] pb-[10vh]">
     <div className={"col-start-2 col-span-10" + (isShowingModel ? " lg:col-start-2 lg:col-span-4" : "")}>
       <div className='relative'>
         <ExperienceTimeline/>
       </div>
     </div>
-    <div dir={(isShowingModel ? "rtl" : "")} className={"col-start-2 col-span-10" + (isShowingModel ? " rtl lg:col-start-8 lg:col-span-4 lg:mt-[15vh]": "")}>
+    <div dir={(isShowingModel ? {direction} : "")} className={"col-start-2 col-span-10" + (isShowingModel ? " lg:col-start-8 lg:col-span-4 lg:mt-[15vh]": "")}>
       <div className={"relative" + (isShowingModel ? "lg:top-[15vh]" : "")}>
         <InternshipTimeline/>
       </div>
@@ -51,6 +51,23 @@ const AboutSection = ({isParalax=true, isShowingModel=true}) => {
     subHeaderContent:"<William's character profile/>",
     titleHeight:"15vh"
   }
+  const [direction, setDirection] = useState('ltr');
+  useEffect(() => {
+    const handleResize = () => {
+      const isLg = window.matchMedia('(min-width: 1024px)').matches; // Mimic 'lg' breakpoint
+      setDirection(isLg ? 'rtl' : 'ltr');
+    };
+
+    // Initial check
+    handleResize();
+
+    // Listen for resize events
+    window.addEventListener('resize', handleResize);
+
+    // Clean up event listener
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
 
   const experienceRef = useRef(null);
   const experienceScroll = useScroll({
@@ -74,12 +91,12 @@ const AboutSection = ({isParalax=true, isShowingModel=true}) => {
       animate-gradient-xy
       `} id="About"
     >
-      <div className={isShowingModel ? "sticky top-0 h-[15vh] mb-[-15vh]" : ""}>
+      <div className={isShowingModel ? "relative top-[5vh] h-[15vh] lg:top-0 lg:sticky lg:mb-[-15vh]" : ""}>
         <SectionTitle {...titleProps}/>
       </div>
  
       {isShowingModel ?
-      <div className="relative w-full h-[100vh] lg:sticky lg:top-0">
+      <div className="relative w-full h-[65vh] lg:sticky lg:h-[100vh] lg:top-0">
         <LazyHeroImagery/>  
       </div>
       : ""}
@@ -93,7 +110,7 @@ const AboutSection = ({isParalax=true, isShowingModel=true}) => {
           className="z-0 pointer-events-none backdrop-blur-[16px] backdrop-brightness-75 fixed inset-0 transition-opacity duration-100"  
         />
         :""}
-        {aboutmeSubSection()}
+        {aboutmeSubSection(direction)}
         <AboutStats/>
       </div>
 
@@ -106,7 +123,7 @@ const AboutSection = ({isParalax=true, isShowingModel=true}) => {
           className="z-0 pointer-events-none backdrop-blur-[16px] backdrop-brightness-75 fixed inset-0 transition-opacity duration-100"  
         />
         :""}
-        {timelineSubSection(isShowingModel)}
+        {timelineSubSection(direction, isShowingModel)}
       </div>
 
       <div className={isShowingModel ? "lg:h-[100vh] w-full" : ""}/>
