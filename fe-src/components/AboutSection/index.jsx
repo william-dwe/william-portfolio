@@ -30,13 +30,16 @@ const aboutmeSubSection = ((direction) => {
 
 
 const timelineSubSection = ((direction, isShowingModel) => {
+  if (!isShowingModel) {
+    direction = "ltr"
+  }
   return <div className="grid grid-cols-12 gap-y-2 mt-[5vh] pb-[10vh]">
     <div className={"col-start-2 col-span-10" + (isShowingModel ? " lg:col-start-2 lg:col-span-4" : "")}>
       <div className='relative'>
         <ExperienceTimeline/>
       </div>
     </div>
-    <div dir={(isShowingModel ? {direction} : "")} className={"col-start-2 col-span-10" + (isShowingModel ? " lg:col-start-8 lg:col-span-4 lg:mt-[15vh]": "")}>
+    <div dir={direction} className={"col-start-2 col-span-10" + (isShowingModel ? " lg:col-start-8 lg:col-span-4 lg:mt-[15vh]": "")}>
       <div className={"relative" + (isShowingModel ? "lg:top-[15vh]" : "")}>
         <InternshipTimeline/>
       </div>
