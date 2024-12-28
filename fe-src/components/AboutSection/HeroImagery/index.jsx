@@ -94,7 +94,24 @@ const HeroImagery = () => {
   const [hovered, setHover] = useState(false)
   const [clicked, setClicked] = useState(false)
   const [moved, setMoved] = useState(false)
-  const [position, setPosition] = useState({ x: 0, y: 0 });  
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isLg, setIsLg] = useState(true);
+  useEffect(() => {
+    const handleResize = () => {
+      const isLg = window.matchMedia('(min-width: 1024px)').matches; // Mimic 'lg' breakpoint
+      setIsLg(isLg);
+    };
+
+    // Initial check
+    handleResize();
+
+    // Listen for resize events
+    window.addEventListener('resize', handleResize);
+
+    // Clean up event listener
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
 
   const handleMouseMove = (e) => {  
     setPosition({ x: e.clientX, y: e.clientY});  
@@ -118,8 +135,8 @@ const HeroImagery = () => {
           </Suspense>
         </Canvas>
       </div>
-      {hovered && !moved && (  
-        <div style={{ position: 'absolute', top: position.y, left: position.x }} className="hidden lg:visible animate-pulse px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm dark:bg-gray-700">  
+      {isLg && hovered && !moved && (  
+        <div style={{ position: 'absolute', top: position.y, left: position.x }} className={"animate-pulse px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm dark:bg-gray-700"}>  
             [ProTip] Try to move me around?
         </div>  
       )}  

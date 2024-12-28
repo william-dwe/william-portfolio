@@ -1,10 +1,15 @@
 "use client";
+import AnimateLoadOnScroll from "../../AnimateLoadOnScroll"
 
 const CardText = (title, paragraph) => {
     return (
         <div className="mt-4 md:mt-0 flex flex-col h-full">
-            <h2 className="text-4xl font-bold text-white mb-4">{title}</h2>
-            <p className="text-base lg:text-lg">{paragraph}</p>
+            <AnimateLoadOnScroll direction="right">
+                <h2 className="text-4xl font-bold text-white mb-4">{title}</h2>
+            </AnimateLoadOnScroll>
+            <AnimateLoadOnScroll direction="right">
+                <p className="text-base lg:text-lg">{paragraph}</p>
+            </AnimateLoadOnScroll>
         </div>   
     )
 }
