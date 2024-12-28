@@ -7,6 +7,7 @@ import AboutStats from "./AboutStats"
 import EducationTimeline from "./AboutTimeline/EducationTimeline";
 import ExperienceTimeline from "./AboutTimeline/ExperienceTimeline";
 import InternshipTimeline from "./AboutTimeline/InternshipTimeline";
+import VoluntaryTimeline from "./AboutTimeline/VoluntaryTimeline";
 import SectionTitle from "../SectionTitle"
 import HeroImageryLoading from "./HeroImagery/HeroImageryLoading";
 import BackdropBlurOnScroll from "./../BackdropBlurOnScroll"
@@ -45,6 +46,13 @@ const timelineSubSection = ((direction, isShowingModel) => {
         <InternshipTimeline direction={direction}/>
       </div>
     </div>
+
+    {!isShowingModel ? (<div dir={direction} className="col-start-2 col-span-10">
+      <div className="relative">
+        <VoluntaryTimeline/>
+      </div>
+    </div>)
+    : ""}
   </div>
 })
 
