@@ -9,6 +9,7 @@ import ExperienceTimeline from "./AboutTimeline/ExperienceTimeline";
 import InternshipTimeline from "./AboutTimeline/InternshipTimeline";
 import SectionTitle from "../SectionTitle"
 import HeroImageryLoading from "./HeroImagery/HeroImageryLoading";
+import BackdropBlurOnScroll from "./../BackdropBlurOnScroll"
 
 const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
   ssr: false,
@@ -47,18 +48,20 @@ const timelineSubSection = ((direction, isShowingModel) => {
   </div>
 })
 
-const AboutSection = ({isParalax=true, isShowingModel=true}) => {
+const AboutSection = ({isShowingModel=true}) => {
   let titleProps = {
     headerContent:"This is",
     headerContentUnderline:"my Build",
     subHeaderContent:"<William's character profile/>",
     titleHeight:"15vh"
   }
+  const [isBackdropBlur, setIsBackdropBlur] = useState(isShowingModel)
   const [direction, setDirection] = useState('ltr');
   useEffect(() => {
     const handleResize = () => {
       const isLg = window.matchMedia('(min-width: 1024px)').matches; // Mimic 'lg' breakpoint
       setDirection(isLg ? 'rtl' : 'ltr');
+      setIsBackdropBlur(isLg ? isShowingModel : false)
     };
 
     // Initial check
@@ -71,23 +74,8 @@ const AboutSection = ({isParalax=true, isShowingModel=true}) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-
-  const experienceRef = useRef(null);
-  const experienceScroll = useScroll({
-    target: experienceRef,
-    offset: ['start 0.6', 'end 0.3']
-  })
-  const experienceOpacityScale = useTransform(experienceScroll.scrollYProgress, [0, 0.15, 0.8, 1], [0, 1, 1, 0])
-
-  const aboutmeRef = useRef(null);
-  const aboutmeScroll = useScroll({
-    target: aboutmeRef,
-    offset: ['start 0.6', 'end 0.3']
-  })
-  const aboutmeOpacityScale = useTransform(aboutmeScroll.scrollYProgress, [0, 0.15, 0.8, 1], [0, 1, 1, 0])
-
   return (
-    <section className={`
+      <section className={`
       relative
       text-white
       bg-gradient-radial from-black to-gray-600
@@ -106,28 +94,17 @@ const AboutSection = ({isParalax=true, isShowingModel=true}) => {
 
       <div className={isShowingModel ? "lg:h-[50vh] w-full" : ""}/> 
 
-      <div ref={aboutmeRef} className="relative lg:mb-[5vh]">
-        {isShowingModel ?
-        <motion.div  
-          style={{ opacity: aboutmeOpacityScale }}  
-          className="z-0 pointer-events-none backdrop-blur-[16px] backdrop-brightness-75 fixed inset-0 transition-opacity duration-100"  
-        />
-        :""}
-        {aboutmeSubSection(direction)}
-        <AboutStats/>
-      </div>
+      
+      <BackdropBlurOnScroll isEnabled={isBackdropBlur}>
+          {aboutmeSubSection(direction)}
+          <AboutStats/>
+      </BackdropBlurOnScroll>
 
       <div className={isShowingModel ? "lg:h-[100vh] w-full" : ""}/> 
-
-      <div ref={experienceRef} className='h-full relative'>
-        {isShowingModel ?
-        <motion.div  
-          style={{ opacity: experienceOpacityScale }}  
-          className="z-0 pointer-events-none backdrop-blur-[16px] backdrop-brightness-75 fixed inset-0 transition-opacity duration-100"  
-        />
-        :""}
+      
+      <BackdropBlurOnScroll isEnabled={isBackdropBlur}>
         {timelineSubSection(direction, isShowingModel)}
-      </div>
+      </BackdropBlurOnScroll>
 
       <div className={isShowingModel ? "lg:h-[100vh] w-full" : ""}/>
     </section>
