@@ -7,7 +7,7 @@ export default function BackdropBlurOnScroll({ children, isEnabled }) {
     const ref = useRef(null);
     const scroll = useScroll({
       target: ref,
-      offset: ['start 0.6', 'end 0.3']
+      offset: ['start 0.6', 'end 0.2']
     })
     const opacityScale = useTransform(scroll.scrollYProgress, [0, 0.15, 0.8, 1], [0, 1, 1, 0])
 

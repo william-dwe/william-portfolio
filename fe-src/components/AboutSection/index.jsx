@@ -42,7 +42,7 @@ const timelineSubSection = ((direction, isShowingModel) => {
     </div>
     <div dir={direction} className={"col-start-2 col-span-10" + (isShowingModel ? " lg:col-start-8 lg:col-span-4 lg:mt-[15vh]": "")}>
       <div className={"relative" + (isShowingModel ? "lg:top-[15vh]" : "")}>
-        <InternshipTimeline/>
+        <InternshipTimeline direction={direction}/>
       </div>
     </div>
   </div>
