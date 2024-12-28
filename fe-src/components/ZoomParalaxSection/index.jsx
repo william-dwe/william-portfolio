@@ -13,27 +13,25 @@ import SectionTitle from "../SectionTitle"
 
 const ParalaxImage = ({ index, picture, contentScroll, containerScroll, numPicture }) => {
     
-    const fadeInStart = index/numPicture
-    const fadeInEnd = fadeInStart + (1/ numPicture)
-    
-    let zoomOpacity = 1
-    let finalOpacity = 1
-    if (index != 0) {
-        zoomOpacity = 0.8
-        finalOpacity = 0
-    }
+  const fadeInStart = index / numPicture;
+  const fadeInEnd = fadeInStart + (1 / numPicture);
 
-    const scrollTrackingIntegrator = useTransform(
-        [contentScroll.scrollYProgress, containerScroll.scrollYProgress],
-        ([x, y]) => x + y
-    );
+  const zoomOpacity = 0.8;
+  const finalOpacity = index === 0 ? 1 : 0;
 
-    const contentFadeTransformer = useTransform(scrollTrackingIntegrator, [fadeInStart, fadeInEnd, 1, 1+picture.opacityLimit], [0, zoomOpacity, zoomOpacity, finalOpacity])
+  const scrollTrackingIntegrator = useTransform(
+    [contentScroll.scrollYProgress, containerScroll.scrollYProgress],
+    ([x, y]) => x + y
+  );
 
-    let styleVar = {
-        scale: picture.scale,
-        opacity: contentFadeTransformer
-    }
+  const contentFadeTransformer = useTransform(scrollTrackingIntegrator, [fadeInStart, fadeInEnd, 1, 1 + picture.opacityLimit], [0, zoomOpacity, zoomOpacity, finalOpacity]);
+
+  let styleVar = {
+    scale: picture.scale,
+    opacity: contentFadeTransformer
+  };
+
+
 
     return <motion.div 
             key={index} 
@@ -72,8 +70,6 @@ const ZoomParalaxSection = () => {
     const mainScale = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 4]);
     const subScaleA = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 6]);
     const subScaleB = useTransform(containerScroll.scrollYProgress, [0, 1], [1, 8]);
-
-    const scrollTrackingIntegrator = useTransform(() => contentScroll.scrollYProgress.get() + containerScroll.scrollYProgress.get())
 
     const pictures = [
         {
@@ -146,7 +142,7 @@ const ZoomParalaxSection = () => {
                     overflow-hidden
                 ">
                     {
-                        pictures.map((picture, index) => <ParalaxImage key={index} picture={picture} contentScroll={contentScroll} containerScroll={containerScroll} numPicture={pictures.length}/>)
+                        pictures.map((picture, index) => <ParalaxImage key={index} index={index} picture={picture} contentScroll={contentScroll} containerScroll={containerScroll} numPicture={pictures.length}/>)
                     }
                 </div>
             </div>
