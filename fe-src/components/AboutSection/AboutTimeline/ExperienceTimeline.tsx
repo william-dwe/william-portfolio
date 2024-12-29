@@ -58,7 +58,7 @@ const ExperienceTimeline = () => {
                 <h2 className="text-4xl font-bold text-white mb-4">Experiences</h2>
             </AnimateLoadOnScroll>
             <AnimateLoadOnScroll direction='right'>
-            <ol className="relative border-s border-gray-200 dark:border-gray-700">                  
+            <ol className="relative ltr:left-3 rtl:right-3 border-s border-gray-200 dark:border-gray-700">
             {
                     listExperience.map((experience, index) => (
                         <li key={index} className="ms-4">
