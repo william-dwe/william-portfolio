@@ -45,7 +45,7 @@ const EducationTimeline = () => {
                 <h2 className="text-4xl font-bold text-white mb-4">Education & Certification</h2>
             </AnimateLoadOnScroll>
             <AnimateLoadOnScroll>
-            <ol className="relative border-s border-gray-200 dark:border-gray-700">                  
+            <ol className="relative left-3 border-s border-gray-200 dark:border-gray-700">                  
             {
                     listEducation.map((education, index) => (
                         <li key={index} className="mb-10 ms-4">

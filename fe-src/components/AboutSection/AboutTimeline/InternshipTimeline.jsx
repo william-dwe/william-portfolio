@@ -55,7 +55,7 @@ const listInternship = [
 const InternshipTimeline = ({direction}) => {
     return (
         <AnimateLoadOnScroll direction={direction === "rtl" ? "left" : "right"}>
-            <ol className="relative border-s border-gray-200 dark:border-gray-700">
+            <ol className="relative ltr:left-3 rtl:right-3 border-s border-gray-200 dark:border-gray-700">
                 {
                     listInternship.map((internship, index) => (
                         <li key={index} className="ms-4">

@@ -25,7 +25,7 @@ export default function AnimateLoadOnScroll({ children, direction="left" }) {
   }
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="relative overflow-hidden">
       <motion.div
         initial="hidden"
         whileInView="visible"

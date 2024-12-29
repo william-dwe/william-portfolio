@@ -7,6 +7,7 @@ import AboutStats from "./AboutStats"
 import EducationTimeline from "./AboutTimeline/EducationTimeline";
 import ExperienceTimeline from "./AboutTimeline/ExperienceTimeline";
 import InternshipTimeline from "./AboutTimeline/InternshipTimeline";
+import VoluntaryTimeline from "./AboutTimeline/VoluntaryTimeline";
 import SectionTitle from "../SectionTitle"
 import HeroImageryLoading from "./HeroImagery/HeroImageryLoading";
 import BackdropBlurOnScroll from "./../BackdropBlurOnScroll"
@@ -17,7 +18,7 @@ const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
 })
 
 const aboutmeSubSection = ((direction) => {
-  return <div className="relative grid grid-cols-12 gap-y-2 gap-x-5 lg:mt-[10vh]">
+  return <div className="relative grid grid-cols-12 gap-y-2 gap-x-5 lg:my-[10vh]">
     <div dir={direction} className="lg:rtl col-start-2 col-span-10 lg:col-start-2 lg:col-span-5">
       <div className="relative lg:top-[5vh]">
         <AboutText/>
@@ -45,6 +46,13 @@ const timelineSubSection = ((direction, isShowingModel) => {
         <InternshipTimeline direction={direction}/>
       </div>
     </div>
+
+    {!isShowingModel ? (<div dir={direction} className="col-start-2 col-span-10">
+      <div className="relative">
+        <VoluntaryTimeline/>
+      </div>
+    </div>)
+    : ""}
   </div>
 })
 

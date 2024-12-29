@@ -7,9 +7,9 @@ import AnimateLoadOnScroll from "../AnimateLoadOnScroll"
 const Footer = () => {
   return <footer
     className="relative lg:absolute lg:bottom-0 w-full backdrop-blur backdrop-brightness-75">
-      <AnimateLoadOnScroll direction="down">
+      <AnimateLoadOnScroll direction="up">
         <div className="mx-6 py-10 text-center lg:text-left">
-          <div className="h-[15vh] grid grid-cols-1 gap-8 lg:grid-cols-12 justify-items-center">
+          <div className="lg:h-[15vh] grid grid-cols-1 gap-8 lg:grid-cols-12 justify-items-center">
             <div className="lg:col-start-3 lg:col-span-3">
               <h6
                 className="mb-4 flex items-center justify-center font-semibold uppercase lg:justify-start">
