@@ -19,10 +19,9 @@ const AboutStats = () => {
         {title: "Certification & Awards", value: "2+"},
     ]
     return (
-        <div className="relative mt-[10vh]">
+        <div className="relative">
             <AnimateLoadOnScroll direction="up">
                 <h2 className="
-                    mb-4
                     text-white font-extrabold 
                     text-l md:text-2xl lg:text-4xl 
                     lg:leading-normal
@@ -30,9 +29,6 @@ const AboutStats = () => {
                 ">
                 Some Quantifiable Achievements
                 </h2>  
-            </AnimateLoadOnScroll>
-            
-            <AnimateLoadOnScroll direction="up">
                 <div className="py-4 lg:px-[10vw] rounded-lg" id="stats">
                     <dl className="grid grid-cols-4 divide-x mx-auto text-gray-900 
                     dark:text-white 

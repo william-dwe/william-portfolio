@@ -18,7 +18,7 @@ const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
 })
 
 const aboutmeSubSection = ((direction) => {
-  return <div className="relative grid grid-cols-12 gap-y-2 gap-x-5 lg:mt-[10vh]">
+  return <div className="relative grid grid-cols-12 gap-y-2 gap-x-5 lg:my-[10vh]">
     <div dir={direction} className="lg:rtl col-start-2 col-span-10 lg:col-start-2 lg:col-span-5">
       <div className="relative lg:top-[5vh]">
         <AboutText/>
