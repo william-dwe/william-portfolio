@@ -25,8 +25,8 @@ const timepoint_content = (
             ">
                 {
                     pointers.map((pointer, index) => (
-                        <AnimateLoadOnScroll>
-                            <li key={index}>{pointer}</li>
+                        <AnimateLoadOnScroll key={index}>
+                            <li>{pointer}</li>
                         </AnimateLoadOnScroll>
                     ))
                 }
