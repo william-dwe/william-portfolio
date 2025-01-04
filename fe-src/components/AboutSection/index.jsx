@@ -1,16 +1,15 @@
 "use client";
 import dynamic from 'next/dynamic'
-import { useScroll, useTransform, motion } from 'framer-motion';
-import React, { useRef, useState, useEffect} from "react";
+import React, { useState, useEffect} from "react";
 import AboutText from "./AboutText";
 import AboutStats from "./AboutStats"
 import EducationTimeline from "./AboutTimeline/EducationTimeline";
 import ExperienceTimeline from "./AboutTimeline/ExperienceTimeline";
 import InternshipTimeline from "./AboutTimeline/InternshipTimeline";
 import VoluntaryTimeline from "./AboutTimeline/VoluntaryTimeline";
-import SectionTitle from "../SectionTitle"
 import HeroImageryLoading from "./HeroImagery/HeroImageryLoading";
 import BackdropBlurOnScroll from "./../BackdropBlurOnScroll"
+import HeroTitle from "../HeroSection/HeroTitle"
 
 const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
   ssr: false,
@@ -18,7 +17,7 @@ const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
 })
 
 const aboutmeSubSection = ((direction) => {
-  return <div className="relative grid grid-cols-12 gap-y-2 gap-x-5 lg:my-[10vh]">
+  return <div className="relative grid grid-cols-12 gap-y-2 gap-x-5">
     <div dir={direction} className="lg:rtl col-start-2 col-span-10 lg:col-start-2 lg:col-span-5">
       <div className="relative lg:top-[5vh]">
         <AboutText/>
@@ -90,9 +89,11 @@ const AboutSection = ({isShowingModel=true}) => {
       animate-gradient-xy
       `} id="About"
     >
-      <div className={isShowingModel ? "relative top-[5vh] h-[15vh] lg:top-0 lg:sticky lg:mb-[-15vh]" : ""}>
-        <SectionTitle {...titleProps}/>
+      {isShowingModel ?
+      <div className="relative pt-[10vh] w-full flex justify-center items-center lg:mb-[-20vh]">
+        <HeroTitle />
       </div>
+      : ""}
  
       {isShowingModel ?
       <div className="relative w-full h-[65vh] lg:sticky lg:h-[100vh] lg:top-0">
@@ -101,17 +102,20 @@ const AboutSection = ({isShowingModel=true}) => {
       : ""}
 
       <div className={isShowingModel ? "lg:h-[50vh] w-full" : ""}/> 
-
       
       <BackdropBlurOnScroll isEnabled={isBackdropBlur}>
+        <div className='lg:backdrop-brightness-50 lg:py-[5vh]'>
           {aboutmeSubSection(direction)}
           <AboutStats/>
+        </div>
       </BackdropBlurOnScroll>
 
       <div className={isShowingModel ? "lg:h-[100vh] w-full" : ""}/> 
       
       <BackdropBlurOnScroll isEnabled={isBackdropBlur}>
-        {timelineSubSection(direction, isShowingModel)}
+        <div className='lg:backdrop-brightness-50 lg:py-[5vh]'>
+          {timelineSubSection(direction, isShowingModel)}
+        </div>
       </BackdropBlurOnScroll>
 
       <div className={isShowingModel ? "lg:h-[100vh] w-full" : ""}/>
