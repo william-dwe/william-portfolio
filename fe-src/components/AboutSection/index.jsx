@@ -1,16 +1,15 @@
 "use client";
 import dynamic from 'next/dynamic'
-import { useScroll, useTransform, motion } from 'framer-motion';
-import React, { useRef, useState, useEffect} from "react";
+import React, { useState, useEffect} from "react";
 import AboutText from "./AboutText";
 import AboutStats from "./AboutStats"
 import EducationTimeline from "./AboutTimeline/EducationTimeline";
 import ExperienceTimeline from "./AboutTimeline/ExperienceTimeline";
 import InternshipTimeline from "./AboutTimeline/InternshipTimeline";
 import VoluntaryTimeline from "./AboutTimeline/VoluntaryTimeline";
-import SectionTitle from "../SectionTitle"
 import HeroImageryLoading from "./HeroImagery/HeroImageryLoading";
 import BackdropBlurOnScroll from "./../BackdropBlurOnScroll"
+import HeroTitle from "../HeroSection/HeroTitle"
 
 const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
   ssr: false,
@@ -90,8 +89,8 @@ const AboutSection = ({isShowingModel=true}) => {
       animate-gradient-xy
       `} id="About"
     >
-      <div className={isShowingModel ? "relative top-[5vh] h-[15vh] lg:top-0 lg:sticky lg:mb-[-15vh]" : ""}>
-        <SectionTitle {...titleProps}/>
+      <div className="relative pt-[15vh] w-full flex justify-center items-center lg:mb-[-15vh]">
+        <HeroTitle />
       </div>
  
       {isShowingModel ?
