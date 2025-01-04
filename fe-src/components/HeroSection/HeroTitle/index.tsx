@@ -16,7 +16,7 @@ const HeroTitle = () => {
     >
       <h2 className="flex justify-center my-1 lg:my-2">
         <span className="
-          text-[#ADB7BE] 
+          text-[#ADB7BE] font-mono font-bold
           text-xs md:text-base lg:text-xl
           max-w-[80vw] lg:max-w-[40vw]
         ">
@@ -62,7 +62,7 @@ const HeroTitle = () => {
         flex
         justify-center
         mb-6
-        text-[#ADB7BE] 
+        text-[#ADB7BE] font-mono
         text-xs md:text-base lg:text-xl
       ">
         <span className="text-center max-w-[80vw] lg:max-w-[40vw]">
