@@ -80,7 +80,7 @@ const AboutSection = ({isShowingModel=true}) => {
 
     // Clean up event listener
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [isShowingModel]);
 
   return (
       <section className={`
