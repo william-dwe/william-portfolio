@@ -56,18 +56,12 @@ const timelineSubSection = ((direction, isShowingModel) => {
 })
 
 const AboutSection = ({isShowingModel=true}) => {
-  let titleProps = {
-    headerContent:"This is",
-    headerContentUnderline:"my Build",
-    subHeaderContent:"<William's character profile/>",
-    titleHeight:"15vh"
-  }
   const [isBackdropBlur, setIsBackdropBlur] = useState(isShowingModel)
-  const [direction, setDirection] = useState('ltr');
+  const [isMobile, setIsMobile] = useState(true);
   useEffect(() => {
     const handleResize = () => {
       const isLg = window.matchMedia('(min-width: 1024px)').matches; // Mimic 'lg' breakpoint
-      setDirection(isLg ? 'rtl' : 'ltr');
+      setIsMobile(!isLg);
       setIsBackdropBlur(isLg ? isShowingModel : false)
     };
 
@@ -82,7 +76,7 @@ const AboutSection = ({isShowingModel=true}) => {
   }, [isShowingModel]);
 
   return (
-      <section className={`
+    <section className={`
       relative
       text-white
       bg-gradient-radial from-black to-gray-600
@@ -105,20 +99,24 @@ const AboutSection = ({isShowingModel=true}) => {
       
       <BackdropBlurOnScroll isEnabled={isBackdropBlur}>
         <div className='lg:backdrop-brightness-50 lg:py-[5vh]'>
-          {aboutmeSubSection(direction)}
+          {aboutmeSubSection(isMobile ? "ltr": "rtl")}
           <AboutStats/>
         </div>
       </BackdropBlurOnScroll>
 
       <div className={isShowingModel ? "lg:h-[100vh] w-full" : ""}/> 
       
-      <BackdropBlurOnScroll isEnabled={isBackdropBlur}>
-        <div className='lg:backdrop-brightness-50 lg:py-[5vh]'>
-          {timelineSubSection(direction, isShowingModel)}
-        </div>
-      </BackdropBlurOnScroll>
+      {
+        isMobile ? "" : <>
+          <BackdropBlurOnScroll isEnabled={isBackdropBlur}>
+            <div className='lg:backdrop-brightness-50 lg:py-[5vh]'>
+              {timelineSubSection(isMobile ? "ltr": "rtl", isShowingModel)}
+            </div>
+          </BackdropBlurOnScroll>
 
-      <div className={isShowingModel ? "lg:h-[100vh] w-full" : ""}/>
+          <div className={isShowingModel ? "lg:h-[100vh] w-full" : ""}/>
+        </>
+      }
     </section>
   );
 };
