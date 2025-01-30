@@ -16,11 +16,11 @@ const HeroTitle = () => {
     >
       <h2 className="flex justify-center my-1 lg:my-2">
         <span className="
-          text-[#ADB7BE] font-mono font-bold
+          text-[#ADB7BE] font-mono
           text-xs md:text-base lg:text-xl
           max-w-[80vw] lg:max-w-[40vw]
         ">
-          ETL | Data Warehousing | Data Platforms
+          I'm William Wibowo, a <span className="font-bold underline">Data Engineer</span>. Ready to
         </span>
         <br/>
       </h2>
@@ -29,7 +29,7 @@ const HeroTitle = () => {
       <h1 className="
         flex
         flex-col
-        justify-center
+        items-center
         text-white font-extrabold 
         text-3xl md:text-4xl lg:text-7xl xl:text-9xl
         lg:leading-loose
@@ -61,12 +61,12 @@ const HeroTitle = () => {
       <p className="
         flex
         justify-center
-        mb-6
+        mb-1
         text-[#ADB7BE] font-mono
         text-xs md:text-base lg:text-xl
       ">
-        <span className="text-center max-w-[80vw] lg:max-w-[40vw]">
-        Building and optimizing data pipelines, warehouses, and cloud-based platforms for efficient data processing and analysis
+        <span className="text-center max-w-[80vw] lg:max-w-[50vw]">
+        Building and optimizing ETL pipelines, data ingestions, data warehouses, data qualities, and data platforms to enable a better data processing and analysis
         </span>
       </p>
       {/* <AboutMeButton/> */}

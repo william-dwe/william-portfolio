@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import ProgressBar from "../components/ProgressBar"
+import Loading from "../components/Loading"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,11 +24,13 @@ export default function RootLayout({
         <title>William Wibowo - Homepage</title>
       </head>
       <body className={inter.className+" relative"}>
-        <ProgressBar>
-          <Navbar/>
-          {children}
-          <Footer/>
-        </ProgressBar>
+        <Loading>
+          <ProgressBar>
+            <Navbar/>
+            {children}
+            <Footer/>
+          </ProgressBar>
+        </Loading>
       </body>
     </html>
   );
