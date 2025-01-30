@@ -15,7 +15,7 @@ const listEducation = [
         </a>
     },
     {
-        "time": "March 2024",
+        "time": "",
         "header": "Google Cloud",
         "subheader": "Professional Data Engineer (PDE)",
         "pointers": [
@@ -48,7 +48,7 @@ const EducationTimeline = () => {
             <ol className="relative left-3 border-s border-gray-200 dark:border-gray-700">                  
             {
                     listEducation.map((education, index) => (
-                        <li key={index} className="mb-10 ms-4">
+                        <li key={index} className="mb-2 ms-4">
                         {
                             <>
                             <Timepoints 

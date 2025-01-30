@@ -17,16 +17,17 @@ const LazyHeroImagery = dynamic(() => import('./HeroImagery'), {
 })
 
 const aboutmeSubSection = ((direction) => {
-  return <div className="relative grid grid-cols-12 gap-y-2 gap-x-5">
-    <div dir={direction} className="lg:rtl col-start-2 col-span-10 lg:col-start-2 lg:col-span-5">
-      <div className="relative lg:top-[5vh]">
-        <AboutText/>
-      </div>
-    </div>
-    <div className='col-start-2 col-span-10 lg:col-start-7 lg:col-span-5'>
-      <EducationTimeline/>
-    </div>
+  return <div className="pb-[5vh] relative grid grid-cols-12 gap-y-2 gap-x-5">
+  <div className="lg:mt-[5vh] col-start-2 col-span-10 lg:col-start-4 lg:col-span-6">
+    <AboutText/>
   </div>
+  <div className='lg:mt-[5vh] col-start-2 col-span-10 lg:col-start-4 lg:col-span-6'>
+    <EducationTimeline/>
+  </div>
+  <div className="lg:mt-[5vh] col-start-2 col-span-10 lg:col-start-4 lg:col-span-6">
+    <AboutStats/>
+  </div>
+</div>
 })
 
 
@@ -98,9 +99,8 @@ const AboutSection = ({isShowingModel=true}) => {
       <div className={isShowingModel ? "lg:h-[50vh] w-full" : ""}/> 
       
       <BackdropBlurOnScroll isEnabled={isBackdropBlur}>
-        <div className='lg:backdrop-brightness-50 lg:py-[5vh]'>
+        <div className='lg:backdrop-brightness-50'>
           {aboutmeSubSection(isMobile ? "ltr": "rtl")}
-          <AboutStats/>
         </div>
       </BackdropBlurOnScroll>
 
