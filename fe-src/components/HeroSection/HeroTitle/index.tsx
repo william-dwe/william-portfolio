@@ -2,7 +2,6 @@
 import React from "react";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
-import AboutMeButton from '../AboutMeButton';
 
 const HeroTitle = () => {
   return (
@@ -20,7 +19,7 @@ const HeroTitle = () => {
           text-xs md:text-base lg:text-xl
           max-w-[80vw] lg:max-w-[40vw]
         ">
-          I'm William Wibowo, a <span className="font-bold underline">Data Engineer</span>. Ready to
+          I&apos;m William Wibowo, a <span className="font-bold underline">Data Engineer</span>. Ready to
         </span>
         <br/>
       </h2>
