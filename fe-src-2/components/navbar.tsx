@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { profile } from "@/lib/data";
+
 
 const links = [
   { href: "/", label: "Home" },
@@ -41,24 +41,7 @@ export default function Navbar() {
               </Link>
             );
           })}
-          <span className="hidden items-center gap-x-6 text-zinc-400 sm:flex">
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-white"
-            >
-              GitHub <span aria-hidden>↗</span>
-            </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-white"
-            >
-              LinkedIn <span aria-hidden>↗</span>
-            </a>
-          </span>
+
         </div>
       </nav>
     </header>

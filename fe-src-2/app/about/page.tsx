@@ -1,17 +1,56 @@
 import type { Metadata } from "next";
 import type { Role } from "@/lib/data";
-import { bio, education, experience, internships, stats, voluntary } from "@/lib/data";
+import {
+  bio,
+  education,
+  experience,
+  internships,
+  stats,
+  voluntary,
+} from "@/lib/data";
+import SectionProgress, {
+  type ProgressSection,
+} from "@/components/section-progress";
 
-function RoleSection({ label, roles }: { label: string; roles: Role[] }) {
+type RoleEntry = { role: Role; badge?: string };
+
+const experienceEntries: RoleEntry[] = [
+  ...experience.map((role) => ({ role })),
+  ...internships.map((role) => ({ role, badge: "Internship" })),
+];
+
+const sections: ProgressSection[] = [
+  { id: "overview", label: "Overview" },
+  { id: "experience", label: "Experience", count: experienceEntries.length },
+  { id: "education", label: "Education & Certification", count: education.length },
+  { id: "volunteering", label: "Volunteering", count: voluntary.length },
+];
+
+function RoleSection({
+  id,
+  label,
+  entries,
+}: {
+  id: string;
+  label: string;
+  entries: RoleEntry[];
+}) {
   return (
-    <section className="mt-16">
+    <section id={id} className="mt-16 scroll-mt-28">
       <h2 className="font-mono text-sm uppercase tracking-widest text-zinc-500">
         {label}
       </h2>
       <ol className="mt-6 space-y-10">
-        {roles.map((role) => (
+        {entries.map(({ role, badge }) => (
           <li key={`${role.org}-${role.title}`}>
-            <p className="font-mono text-xs text-zinc-500">{role.period}</p>
+            <div className="flex items-center gap-2">
+              <p className="font-mono text-xs text-zinc-500">{role.period}</p>
+              {badge && (
+                <span className="rounded border border-white/15 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-zinc-400">
+                  {badge}
+                </span>
+              )}
+            </div>
             <h3 className="mt-1 font-medium text-white">
               {role.orgUrl ? (
                 <a
@@ -57,32 +96,51 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <section className="mx-auto max-w-5xl px-6 pt-32">
-      <h1 className="text-3xl font-medium tracking-tight text-white md:text-4xl">
-        About
-      </h1>
+    <div className="mx-auto max-w-6xl px-6 pt-28 lg:grid lg:grid-cols-[13rem_1fr] lg:gap-12">
+      <SectionProgress sections={sections} contentId="about-content" />
+      <div id="about-content" className="pb-40">
+        <h1 className="text-3xl font-medium tracking-tight text-white md:text-4xl">
+          About
+        </h1>
 
-      <div className="mt-8 max-w-3xl space-y-4 leading-relaxed text-zinc-300">
-        {bio.map((paragraph) => (
-          <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-        ))}
-      </div>
-
-      <dl className="mt-16 grid grid-cols-2 divide-x divide-white/10 sm:grid-cols-4">
-        {stats.map(({ value, label }) => (
-          <div key={label} className="flex flex-col px-4 py-2 text-center first:pl-0">
-            <dt className="order-last mt-1 text-xs text-zinc-500">{label}</dt>
-            <dd className="text-3xl font-medium tracking-tight text-white">
-              {value}
-            </dd>
+        <section id="overview" className="scroll-mt-28">
+          <div className="mt-8 max-w-3xl space-y-4 leading-relaxed text-zinc-300">
+            {bio.map((paragraph) => (
+              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+            ))}
           </div>
-        ))}
-      </dl>
 
-      <RoleSection label="Experience" roles={experience} />
-      <RoleSection label="Education & Certification" roles={education} />
-      <RoleSection label="Internships" roles={internships} />
-      <RoleSection label="Volunteering" roles={voluntary} />
-    </section>
+          <dl className="mt-16 grid grid-cols-2 divide-x divide-white/10 sm:grid-cols-4">
+            {stats.map(({ value, label }) => (
+              <div
+                key={label}
+                className="flex flex-col px-4 py-2 text-center first:pl-0"
+              >
+                <dt className="order-last mt-1 text-xs text-zinc-500">{label}</dt>
+                <dd className="text-3xl font-medium tracking-tight text-white">
+                  {value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <RoleSection
+          id="experience"
+          label="Experience"
+          entries={experienceEntries}
+        />
+        <RoleSection
+          id="education"
+          label="Education & Certification"
+          entries={education.map((role) => ({ role }))}
+        />
+        <RoleSection
+          id="volunteering"
+          label="Volunteering"
+          entries={voluntary.map((role) => ({ role }))}
+        />
+      </div>
+    </div>
   );
 }

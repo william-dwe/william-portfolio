@@ -6,6 +6,12 @@ html {
   @apply bg-page text-zinc-100 antialiased;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 ::selection {
   background-color: #f4f4f5;
   color: #09090b;

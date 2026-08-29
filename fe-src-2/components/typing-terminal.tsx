@@ -5,9 +5,9 @@ import { TypeAnimation } from "react-type-animation";
 const sequence: (string | number)[] = [
   "$ whoami\n> william wibowo — data & platform engineer",
   2600,
-  "$ cat pedigree.txt\n> data engineer @ traveloka\n> ex-shopee qa automation\n> gcp professional data engineer",
+  "$ cat pedigree.txt\n> goto senior data engineer\n> traveloka senior data engineer\n> shopee software engineer",
   2600,
-  "$ ls focus/\n> warehousing  ingestion  analytics  full-stack",
+  "$ ls focus/\n> warehousing  ingestion  full-stack",
   2600,
 ];
 
