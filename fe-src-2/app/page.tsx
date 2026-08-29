@@ -1,5 +1,6 @@
 import Link from "next/link";
 import TypingTerminal from "@/components/typing-terminal";
+import TechMarquee from "@/components/tech-marquee";
 import CopyEmail from "@/components/copy-email";
 import ProjectShowcase from "@/components/project-showcase";
 import BlogPostRow from "@/components/blog-post-row";
@@ -26,32 +27,34 @@ export default function Home() {
   return (
     <>
       <section className="flex min-h-[100svh] flex-col justify-center pt-14">
-        <div className="mx-auto w-full max-w-5xl px-6">
-          <p className="inline-flex rounded-full border border-white/15 px-3 py-1 font-mono text-xs uppercase tracking-widest text-zinc-300">
-            Traveloka · Data Engineer
-          </p>
-          <h1 className="mt-6 text-[clamp(2.75rem,6vw,4.4rem)] font-medium leading-[1.1] tracking-tight">
-            <span className="text-zinc-400">
-              A data engineer
-              <br />
-              with the
-              <br />
-            </span>
-            <span className="bg-gradient-to-r from-zinc-100 to-zinc-500 bg-clip-text text-transparent">
-              warehouse wired in.
-            </span>
-          </h1>
-          <p className="mt-6 max-w-xl leading-relaxed text-zinc-400">
-            I design, build, and operate data platforms end to end — ingestion,
-            warehousing, and analytics — tuned against real production
-            workloads.
-          </p>
-          <p className="mt-3 font-mono text-xs text-zinc-500">
-            Ex-Shopee QA Automation · GCP Certified Data Engineer
-          </p>
-          <div className="mt-10 max-w-xl">
+        <div className="mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2">
+          <div>
+            <p className="inline-flex rounded-full border border-white/15 px-3 py-1 font-mono text-xs uppercase tracking-widest text-zinc-300">
+              Traveloka · Data Engineer
+            </p>
+            <h1 className="mt-6 text-[clamp(2.5rem,4.5vw,3.6rem)] font-medium leading-[1.1] tracking-tight">
+              <span className="text-zinc-400">
+                A data engineer with the{" "}
+              </span>
+              <span className="bg-gradient-to-r from-zinc-100 to-zinc-500 bg-clip-text text-transparent">
+                warehouse wired in.
+              </span>
+            </h1>
+            <p className="mt-6 leading-relaxed text-zinc-400">
+              I design, build, and operate data platforms end to end — ingestion,
+              warehousing, and analytics — tuned against real production
+              workloads.
+            </p>
+            <p className="mt-3 font-mono text-xs text-zinc-500">
+              Ex-Shopee QA Automation · GCP Certified Data Engineer
+            </p>
+          </div>
+          <div>
             <TypingTerminal />
           </div>
+        </div>
+        <div className="mt-10 mx-auto w-full max-w-5xl px-6">
+          <TechMarquee />
         </div>
       </section>
 
