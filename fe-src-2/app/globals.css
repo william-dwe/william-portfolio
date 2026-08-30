@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @apply bg-page text-zinc-100 antialiased;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-orbs {
+    display: none;
+  }
+  .page-loader,
+  .page-loader * {
+    animation: none !important;
+  }
+}
+
+::selection {
+  background-color: #f4f4f5;
+  color: #09090b;
+}
+
+.skip-link {
+  @apply sr-only;
+}
+
+.skip-link:focus {
+  @apply not-sr-only fixed left-4 top-4 z-[100] rounded-md border border-white/20 bg-panel px-3 py-2 text-sm text-zinc-100;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .print-page,
+  .print-page * {
+    color: #000000 !important;
+    border-color: #d4d4d8 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

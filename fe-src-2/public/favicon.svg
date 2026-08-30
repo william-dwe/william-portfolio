@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Dark rounded square background -->
+  <rect x="16" y="16" width="480" height="480" rx="80" ry="80" fill="#1F1A0E"/>
+  <!-- Geometric angular W in gold -->
+  <path d="M128 144 L192 368 L256 224 L320 368 L384 144 L352 144 L304 320 L256 176 L208 320 L160 144 Z" fill="#C7AB62"/>
+</svg>
