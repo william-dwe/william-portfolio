@@ -1,1 +1,6 @@
 **/.env*
+# Local Netlify folder
+.netlify
+.DS_Store
+*.pdf
+.next/dev

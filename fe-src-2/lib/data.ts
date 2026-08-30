@@ -68,10 +68,20 @@ export const stats: Stat[] = [
   { value: "10+", label: "Data Source Aggregated" },
   { value: "2+", label: "Certification & Awards" },
 ];
-
 export const projects: Project[] = [
   {
     num: "01",
+    slug: "crypto-tracker",
+    title: "Crypto Tracker - Local Data Pipeline",
+    tagline:
+      "An end-to-end local data pipeline: crypto and FX data ingested with dlt, warehoused in DuckDB, modelled with dbt into a medallion + star schema, orchestrated by Airflow 3.",
+    architecture:
+      "dlt ingests CoinGecko and Frankfurter APIs into a DuckDB landing zone; dbt builds bronze trust-filter views, silver cleaned staging, and a gold star schema (dims, facts, marts). One Airflow 3 DAG runs ingest-then-build daily through a single-slot pool that serializes DuckDB writes. No API keys, no cloud account.",
+    tags: ["data-engineering", "python", "SQL", "Airflow", "dbt", "DuckDB", "dlt"],
+    repoUrl: "https://github.com/william-dwe/crypto-tracker",
+  },
+  {
+    num: "02",
     slug: "blanche",
     title: "Blanche - Online Clothing E-commerce Platform",
     tagline:
@@ -82,18 +92,18 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/william-dwe/blanche",
   },
   {
-    num: "02",
+    num: "03",
     slug: "sushee",
     title: "Sushee - Online Restaurant App",
     tagline: "An Online Restaurant built using Golang, PostgreSQL, and React.",
     architecture:
-      "Three-tier ordering app: React SPA → Go REST API → PostgreSQL, run locally with Docker Compose. Orders flow through an explicit state machine from placement to kitchen fulfillment.",
+      "Three-tier ordering app: React SPA -> Go REST API -> PostgreSQL, run locally with Docker Compose. Orders flow through an explicit state machine from placement to kitchen fulfillment.",
     tags: ["web-development", "frontend", "React", "backend", "Go", "database"],
     repoUrl: "https://github.com/william-dwe/sushee",
     imageUrl: "/images/projects/sushee/sushee-1.png",
   },
   {
-    num: "03",
+    num: "04",
     slug: "ewallet",
     title: "E-Wallet Backend Service",
     tagline: "An E-Wallet API built using Golang and PostgreSQL.",
@@ -104,7 +114,7 @@ export const projects: Project[] = [
     imageUrl: "/images/projects/ewallet/erd.png",
   },
   {
-    num: "04",
+    num: "05",
     slug: "mastrendy",
     title: "MasTrendy - Daily Update Discord Bot",
     tagline: "A Discord bot that publishes a curated daily trends digest.",
@@ -115,7 +125,7 @@ export const projects: Project[] = [
     imageUrl: "/images/projects/mastrendy/mastrendy.png",
   },
   {
-    num: "05",
+    num: "06",
     slug: "hotel",
     title: "Hotel Booking Cancellation Prediction Model",
     tagline:
