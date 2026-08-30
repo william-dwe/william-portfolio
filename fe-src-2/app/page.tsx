@@ -15,11 +15,8 @@ export default function Home() {
               Senior AI & Data Engineer
             </p>
             <h1 className="mt-6 text-[clamp(2.5rem,4.5vw,3.6rem)] font-medium leading-[1.1] tracking-tight">
-              <span className="text-zinc-400">
-                A data engineer with the{" "}
-              </span>
               <span className="bg-gradient-to-r from-zinc-100 to-zinc-500 bg-clip-text text-transparent">
-                warehouse wired in.
+                Well Experienced Data Warehouse Craftsman
               </span>
             </h1>
             <p className="mt-6 leading-relaxed text-zinc-400">

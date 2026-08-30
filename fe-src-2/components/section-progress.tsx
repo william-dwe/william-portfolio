@@ -8,10 +8,8 @@ const ACTIVE_OFFSET = 140;
 
 export default function SectionProgress({
   sections,
-  contentId,
 }: {
   sections: ProgressSection[];
-  contentId: string;
 }): JSX.Element {
   const [activeIndex, setActiveIndex] = useState(0);
   const [pct, setPct] = useState(0);
@@ -20,11 +18,13 @@ export default function SectionProgress({
     let frame = 0;
 
     const update = () => {
-      const content = document.getElementById(contentId);
-      if (!content) return;
+      const first = document.getElementById(sections[0]?.id ?? "");
+      const last = document.getElementById(sections[sections.length - 1]?.id ?? "");
+      if (!first || !last) return;
 
-      const startY = content.offsetTop;
-      const endY = content.offsetTop + content.offsetHeight - window.innerHeight;
+      const lastRect = last.getBoundingClientRect();
+      const startY = first.getBoundingClientRect().top + window.scrollY;
+      const endY = lastRect.top + window.scrollY + lastRect.height - window.innerHeight;
       const span = Math.max(endY - startY, 1);
       const ratio = (window.scrollY - startY) / span;
       setPct(Math.round(Math.min(Math.max(ratio, 0), 1) * 100));
@@ -66,7 +66,7 @@ export default function SectionProgress({
       window.removeEventListener("resize", onScroll);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, [sections, contentId]);
+  }, [sections]);
 
   return (
     <>

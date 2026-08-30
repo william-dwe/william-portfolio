@@ -11,6 +11,15 @@ html {
     scroll-behavior: smooth;
   }
 }
+@media (prefers-reduced-motion: reduce) {
+  .ambient-orbs {
+    display: none;
+  }
+  .page-loader,
+  .page-loader * {
+    animation: none !important;
+  }
+}
 
 ::selection {
   background-color: #f4f4f5;

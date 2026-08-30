@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { TypeAnimation } from "react-type-animation";
+
 import { motion } from "framer-motion";
 
 const HeroTitle = () => {
@@ -27,34 +27,19 @@ const HeroTitle = () => {
 
       <h1 className="
         flex
-        flex-col
         items-center
-        text-white font-extrabold 
+        text-white font-extrabold
         text-3xl md:text-4xl lg:text-7xl xl:text-9xl
         lg:leading-loose
         my-1 lg:my-2
       ">
         <span className="
-          text-transparent 
+          text-transparent
           text-center
           max-w-[90vw] lg:max-w-[70vw]
-          bg-clip-text bg-gradient-to-r from-p2 to-p3"
-        >
-          <span className="my-1 lg:my-2">Crafting Intelligent</span>
-          <br/>
-          <TypeAnimation
-            sequence={[
-            "Data Platform",
-            300,
-            "Data Warehouse",
-            300,
-            "Data Solutions",
-            300,
-            ]}
-            wrapper="span"
-            speed={50}
-            preRenderFirstString={false}
-          />
+          bg-clip-text bg-gradient-to-r from-p2 to-p3
+        ">
+          <span className="my-1 lg:my-2">Well Experienced Data Warehouse Craftsman</span>
         </span>
       </h1>
       <p className="

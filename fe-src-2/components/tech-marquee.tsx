@@ -1,4 +1,4 @@
-import type { IconType } from "react-icons";
+import type { IconType } from "@/lib/icons-local";
 import {
   SiDocker,
   SiApacheairflow,
@@ -10,7 +10,7 @@ import {
   SiReact,
   SiRedis,
   SiTypescript,
-} from "react-icons/si";
+} from "@/lib/icons-local";
 
 const techs: Array<{ name: string; Icon: IconType }> = [
   { name: "BigQuery", Icon: SiGooglebigquery },
