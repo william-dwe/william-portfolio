@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export type ProgressSection = { id: string; label: string; count?: number };
 
 const ACTIVE_OFFSET = 140;
+const IDLE_HIDE_MS = 2000;
 
 export default function SectionProgress({
   sections,
@@ -13,6 +14,17 @@ export default function SectionProgress({
 }): JSX.Element {
   const [activeIndex, setActiveIndex] = useState(0);
   const [pct, setPct] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const barRef = useRef<HTMLDivElement>(null);
+  const idleRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const armIdle = useCallback(() => {
+    setVisible(true);
+    clearTimeout(idleRef.current);
+    idleRef.current = setTimeout(() => {
+      if (barRef.current?.contains(document.activeElement)) return;
+      setVisible(false);
+    }, IDLE_HIDE_MS);
+  }, []);
 
   useEffect(() => {
     let frame = 0;
@@ -47,6 +59,7 @@ export default function SectionProgress({
       }
 
       setActiveIndex(next);
+      armIdle();
     };
 
     const onScroll = () => {
@@ -65,12 +78,19 @@ export default function SectionProgress({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (frame) cancelAnimationFrame(frame);
+      clearTimeout(idleRef.current);
+      idleRef.current = undefined;
     };
-  }, [sections]);
-
+  }, [sections, armIdle]);
   return (
     <>
-      <div className="sticky top-14 z-40 -mx-6 mb-10 border-b border-white/5 bg-black/70 px-6 py-2 backdrop-blur-md lg:hidden">
+      <div
+        ref={barRef}
+        onFocusCapture={armIdle}
+        className={`fixed inset-x-0 bottom-0 z-30 border-t border-white/5 bg-black/80 px-6 py-3 backdrop-blur-md transition-opacity duration-300 motion-reduce:transition-none lg:hidden ${
+          visible ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
         <div className="flex items-center justify-between font-mono text-[11px]">
           <span className="text-zinc-200">{sections[activeIndex]?.label}</span>
           <span className="text-zinc-500">{pct}% read</span>
@@ -100,7 +120,7 @@ export default function SectionProgress({
         </nav>
       </div>
 
-      <aside className="hidden lg:block">
+      <aside className="hidden lg:col-start-1 lg:row-start-1 lg:block">
         <nav aria-label="Reading progress" className="sticky top-28">
           <p className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
             Progress

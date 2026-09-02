@@ -4,7 +4,7 @@ import type { Project } from "@/lib/data";
 export default function ProjectDetail({ project }: { project: Project }) {
   return (
     <div
-      className={`grid items-start gap-8 ${
+      className={`grid items-start gap-5 md:gap-8 ${
         project.imageUrl ? "md:grid-cols-2" : "grid-cols-1"
       }`}
     >
@@ -37,17 +37,19 @@ export default function ProjectDetail({ project }: { project: Project }) {
         </a>
       </div>
 
-      {project.imageUrl && (
-        <div className="rounded-xl border border-white/10 bg-panel p-6">
-          <Image
-            src={project.imageUrl}
-            alt={`${project.title} screenshot`}
-            width={640}
-            height={480}
-            className="h-auto w-full object-contain"
-          />
-        </div>
-      )}
+{project.imageUrl && (
+  <div className="rounded-xl border border-white/10 bg-panel p-4 md:p-6">
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+      <Image
+        src={project.imageUrl}
+        alt={`${project.title} screenshot`}
+        fill
+        sizes="(min-width: 768px) 32rem, 100vw"
+        className="object-contain"
+      />
+    </div>
+  </div>
+)}
     </div>
   );
 }
