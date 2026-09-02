@@ -75,8 +75,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-6xl px-6 pt-28 lg:grid lg:grid-cols-[13rem_1fr] lg:gap-12">
-      <SectionProgress sections={sections} />
-      <div id="about-content" className="pb-40">
+      <div id="about-content" className="pb-40 lg:col-start-2 lg:row-start-1">
         <h1 className="text-3xl font-medium tracking-tight text-white md:text-4xl">
           About
         </h1>
@@ -149,6 +148,7 @@ export default function AboutPage() {
           entries={voluntary.map((role) => ({ role }))}
         />
       </div>
+      <SectionProgress sections={sections} />
     </div>
   );
 }

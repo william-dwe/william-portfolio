@@ -34,6 +34,16 @@ html {
   @apply not-sr-only fixed left-4 top-4 z-[100] rounded-md border border-white/20 bg-panel px-3 py-2 text-sm text-zinc-100;
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+
 @media print {
   html,
   body {
