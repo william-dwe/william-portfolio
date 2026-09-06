@@ -136,6 +136,27 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/william-dwe/Hotel-Booking-Cancelation-Prediction-Model",
     imageUrl: "/images/projects/hotel/hotel.jpeg",
   },
+  {
+    num: "07",
+    slug: "second-brain",
+    title: "Second Brain - Git-Backed Obsidian Knowledge Vault",
+    tagline:
+      "A Git-backed Obsidian second brain with an agentic capture pipeline — informal chat updates become linked, structured Markdown, ready for weekly and annual reviews.",
+    architecture:
+      "Plain Markdown files are the source of truth, organized by lifecycle: Inbox → Projects/Areas/Resources → Archive (PARA). The owner's main interface is Discord and WhatsApp, where a Hermes agent turns informal messages into structured notes and dated work logs with employers kept clearly separated; Task Board due dates surface as Google Calendar reminders. Obsidian supplies editing, wikilinks, and the kanban board; Git versions every change with machine-local state git-ignored, so the vault reproduces on any device.",
+    tags: [
+      "personal-knowledge-management",
+      "note-taking",
+      "obsidian",
+      "discord",
+      "whatsapp",
+      "google-calendar",
+      "git",
+      "ai-agents",
+    ],
+    repoUrl: "https://github.com/william-dwe/second-brain",
+    imageUrl: "/images/projects/second-brain/second-brain-architecture.png",
+  },
 ];
 
 export const blogs: BlogPost[] = [
